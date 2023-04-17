@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 // export const StyledHeader = styled(Header)`
 // ${props => props.theme === 'GREY' && '.navbar { background: red; }'}`;
@@ -7,11 +7,13 @@ import { createGlobalStyle } from 'styled-components';
 // export const StyledHeader = styled(newHeader)`
 //    .navbar {
 //        background: red !important;
-//    } 
+//    }
 // `;
 
 export const StyledHeader = createGlobalStyle`
-    ${props => props.theme === 'GREY' && `
+    ${(props) =>
+      props.theme === "GREY" &&
+      `
         header#myHeader.navbar.sticky.white {
             background: #212428;
             border-bottom: 0;
@@ -68,6 +70,13 @@ export const StyledHeader = createGlobalStyle`
             color: #fff !important;
             background: #ff343f;
         }
+        .logout{
+        display: flex;
+        align-items: center;
+        }
+        .logout a {
+            cursor: pointer;
+        }
         footer.footer-light .subfooter span img.d-1{
             display: none !important;
         }
@@ -94,7 +103,9 @@ export const StyledHeader = createGlobalStyle`
         }
     `}
 
-    ${props => props.theme === 'GREYLOGIN' && `
+    ${(props) =>
+      props.theme === "GREYLOGIN" &&
+      `
         header#myHeader.navbar.sticky.white {
         background: #212428;
         border-bottom: 0;
@@ -172,7 +183,7 @@ export const StyledHeader = createGlobalStyle`
         }
         .mainside{
         .connect-wal{
-        display: none;
+        // display: none;
         }
         .logout{
         display: flex;
@@ -195,7 +206,9 @@ export const StyledHeader = createGlobalStyle`
         }
     `}
 
-    ${props => props.theme === 'BlACK' && `
+    ${(props) =>
+      props.theme === "BlACK" &&
+      `
         //WRITE HEADER STYLE FOR BlACK HERE
     `}
 `;
