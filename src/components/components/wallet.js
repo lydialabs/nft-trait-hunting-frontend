@@ -3,7 +3,7 @@ import React from "react";
 import { useConnectKeplr } from "../../core/wallet/hooks";
 
 const Wallet = () => {
-  const connectWallet = useConnectKeplr();
+  const { connectWallet } = useConnectKeplr();
 
   return (
     <div className="row">
