@@ -23,9 +23,9 @@ export const useMintNFT = (entrypoint = {}) => {
         ""
       );
 
-      await sleep(60000);
+      await sleep(90000);
       const nftData = await Axios.get("nft?height=" + nftRes.height);
-      setNft(nftData);
+      if (nftData?.data?.length > 0) setNft(nftData?.data[0]);
     } catch (err) {
       console.log("err:", err);
     }
