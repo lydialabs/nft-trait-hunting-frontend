@@ -711,7 +711,7 @@ const Header = function ({ className }) {
                   ref={refpop}
                 >
                   <img
-                    src="../../img/author_single/author_thumbnail.jpg"
+                    src="/img/author/author-11.jpg"
                     alt=""
                   />
                   {showpop && (

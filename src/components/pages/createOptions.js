@@ -33,7 +33,7 @@ const Createpage = () => {
               <img src="./img/misc/grey-coll-single.png" alt="" />
               <h3 style={{ marginTop: "25px" }}>Mint</h3>
             </Link>
-            <Link to="/create3" className="opt-create">
+            <Link to="/colectionGrey" className="opt-create">
               <img src="./img/misc/grey-coll-multiple.png" alt="" />
               <h3>Combine</h3>
             </Link>

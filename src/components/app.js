@@ -137,10 +137,7 @@ const App = () => {
         <Route element={<Helpcenter />} path="/helpcenter" />
         <Route element={<Helpcentergrey />} path="/helpcenterGrey" />
         <Route element={<Colection />} path="/colection/:collectionId" />
-        <Route
-          element={<Colectiongrey />}
-          path="/colectionGrey/:collectionId"
-        />
+        <Route element={<Colectiongrey />} path="/colectionGrey" />
         <Route element={<ItemDetailRedux />} path="/ItemDetail/:nftId" />
         <Route
           element={<ItemDetailReduxgrey />}
