@@ -9,12 +9,7 @@ import { StyledHeader } from "../Styles";
 const theme = "GREYLOGIN"; //LIGHT, GREY, RETRO
 
 const Createpage = () => {
-  const mintNFT = useMintNFT({ mint: {} });
-
-  const onMintNFT = async () => {
-    const result = await mintNFT();
-    console.log("🚀 ~ file: createOptions.js:12 ~ onMintNFT ~ result:", result);
-  };
+  const { mintNFT, nft, loading } = useMintNFT({ mint: {} });
 
   return (
     <div className="greyscheme">
@@ -116,9 +111,14 @@ const Createpage = () => {
               </div>
             </form> */}
 
-            <button className="btn-main" onClick={onMintNFT}>
+            <button className="btn-main" onClick={mintNFT} disabled={loading}>
               Create NFT
             </button>
+            {loading && (
+              <p className="p-info pb-3">
+                Processing! This may take a while to finish.
+              </p>
+            )}
           </div>
 
           <div className="col-lg-3 col-sm-6 col-xs-12">
@@ -139,12 +139,14 @@ const Createpage = () => {
               </div> */}
               <div className="nft__item_wrap">
                 <span>
-                  <img
-                    src="./img/collections/coll-item-3.jpg"
-                    id="get_file_2"
-                    className="lazy nft__item_preview"
-                    alt=""
-                  />
+                  {nft && (
+                    <img
+                      src={nft.image}
+                      id="get_file_2"
+                      className="lazy nft__item_preview"
+                      alt=""
+                    />
+                  )}
                 </span>
               </div>
               {/* <div className="nft__item_info">
