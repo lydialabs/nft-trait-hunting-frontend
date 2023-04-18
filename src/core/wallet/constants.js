@@ -29,7 +29,7 @@ export const ChainInfo = {
 };
 
 export const CONTRACT_ADDRESS =
-  "archway1j6ay2euavv5cs9nctlxtw3424ysmltat763039wgvdrqw2gd3k3q8f7xu7";
+  "archway1c0gnfqf4hjz0juwkxt26y9uxvmkqpg84sgl76r2evvd9gy95yrzq88x69v";
 
 export const TIERS = {
   1: { label: "common", color: "#727272" },
