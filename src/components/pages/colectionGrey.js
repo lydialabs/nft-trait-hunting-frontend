@@ -89,9 +89,14 @@ const Colection = function () {
                   right: 0,
                   top: "50%",
                   transform: "translateY(-50%)",
+                  width: "158.04px",
                 }}
               >
-                Merge NFTs
+                {loading ? (
+                  <span aria-hidden="true" className="icon_loading"></span>
+                ) : (
+                  "Merge NFTs"
+                )}
               </button>
               <ul className="de_nav">
                 <li id="Mainbtn" className="active">
