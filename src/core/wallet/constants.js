@@ -30,3 +30,9 @@ export const ChainInfo = {
 
 export const CONTRACT_ADDRESS =
   "archway1j6ay2euavv5cs9nctlxtw3424ysmltat763039wgvdrqw2gd3k3q8f7xu7";
+
+export const TIERS = {
+  1: "common",
+  2: "rare",
+  3: "legendary",
+};

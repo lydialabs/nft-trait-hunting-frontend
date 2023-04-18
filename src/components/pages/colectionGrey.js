@@ -1,17 +1,15 @@
-import React, { memo, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { memo } from "react";
 import ColumnNewRedux from "../components/ColumnNewRedux";
 import Footer from "../components/footer";
-import * as selectors from "../../store/selectors";
-import { fetchHotCollections } from "../../store/actions/thunks";
-import api from "../../core/api";
+
+import { useListOfNFT } from "../../core/wallet/services";
 
 //IMPORT DYNAMIC STYLED COMPONENT
 import { StyledHeader } from "../Styles";
 //SWITCH VARIABLE FOR PAGE STYLE
 const theme = "GREY"; //LIGHT, GREY, RETRO
 
-const Colection = function ({ collectionId = 1 }) {
+const Colection = function () {
   const [openMenu, setOpenMenu] = React.useState(true);
   const [openMenu1, setOpenMenu1] = React.useState(false);
   const handleBtnClick = () => {
@@ -26,6 +24,8 @@ const Colection = function ({ collectionId = 1 }) {
     document.getElementById("Mainbtn1").classList.add("active");
     document.getElementById("Mainbtn").classList.remove("active");
   };
+
+  const nfts = useListOfNFT();
 
   return (
     <div className="greyscheme">
@@ -70,10 +70,10 @@ const Colection = function ({ collectionId = 1 }) {
             <div className="items_filter">
               <ul className="de_nav">
                 <li id="Mainbtn" className="active">
-                  <span onClick={handleBtnClick}>On Sale</span>
+                  <span onClick={handleBtnClick}>New ({nfts?.length})</span>
                 </li>
                 <li id="Mainbtn1" className="">
-                  <span onClick={handleBtnClick1}>Owned</span>
+                  <span onClick={handleBtnClick1}>Favorite (0)</span>
                 </li>
               </ul>
             </div>
@@ -81,7 +81,7 @@ const Colection = function ({ collectionId = 1 }) {
         </div>
         {openMenu && (
           <div id="zero1" className="onStep fadeIn">
-            <ColumnNewRedux shuffle showLoadMore={false} />
+            <ColumnNewRedux shuffle showLoadMore={false} nfts={nfts} />
           </div>
         )}
         {openMenu1 && (

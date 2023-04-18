@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSetAtom } from "jotai";
 import { GasPrice } from "@cosmjs/stargate";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
@@ -11,8 +12,9 @@ const WALLET_ADDRESS = "WALLET_ADDRESS";
 
 export const useConnectKeplr = () => {
   const setUser = useSetAtom(userAtom);
+  const navigate = useNavigate();
 
-  const connectWallet = async () => {
+  const connectWallet = async (refresh) => {
     console.log("Connecting wallet...");
     try {
       if (window) {
@@ -40,6 +42,7 @@ export const useConnectKeplr = () => {
 
             setUser({ wallet, offlineSigner, cwClient });
             localStorage.setItem(WALLET_ADDRESS, wallet);
+            if (!refresh) navigate("/createOptions");
           } else {
             console.warn(
               "Error accessing experimental features, please update Keplr"
@@ -62,6 +65,7 @@ export const useConnectKeplr = () => {
   const disconnectWallet = () => {
     setUser({});
     localStorage.removeItem(WALLET_ADDRESS);
+    navigate("/walletGrey");
   };
 
   return { connectWallet, disconnectWallet };
@@ -73,7 +77,7 @@ export const useKeepWalletConnection = () => {
   useEffect(() => {
     const accountStorage = localStorage.getItem(WALLET_ADDRESS);
     if (!accountStorage) return;
-    window.onload = connectWallet;
+    window.onload = () => connectWallet(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
