@@ -27,3 +27,6 @@ export const ChainInfo = {
   gasPriceStep: { low: 0, average: 0.1, high: 0.2 },
   features: ["cosmwasm"],
 };
+
+export const CONTRACT_ADDRESS =
+  "archway1j6ay2euavv5cs9nctlxtw3424ysmltat763039wgvdrqw2gd3k3q8f7xu7";
