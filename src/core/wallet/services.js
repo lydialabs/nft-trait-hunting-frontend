@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAtomValue } from "jotai";
+import swal from "@sweetalert/with-react";
+
 import { userAtom } from "../../store/jotai/userAtom";
 import { CONTRACT_ADDRESS } from "./constants";
 import { sleep } from "../../utils";
@@ -15,7 +17,7 @@ const checkResult = async (blockHeight, setFunction) => {
   const nftData = await Axios.get("nft?height=" + blockHeight);
   if (nftData?.data === null) {
     loopCount++;
-    await checkResult(blockHeight);
+    await checkResult(blockHeight, setFunction);
   } else {
     if (nftData?.data?.length > 0 && setFunction) setFunction(nftData?.data[0]);
     loopCount = 0;
@@ -55,14 +57,17 @@ export const useMergeNFTs = () => {
   const execute = async (token_id_1, token_id_2) => {
     setLoading(true);
     try {
-        const nftRes = await userInfo?.cwClient?.execute(
-          userInfo.wallet,
-          CONTRACT_ADDRESS,
-          { combine: { token_id_1, token_id_2, should_return_new_token: true } },
-          txFee,
-          ""
-        );
-        await checkResult(nftRes.height);
+      const nftRes = await userInfo?.cwClient?.execute(
+        userInfo.wallet,
+        CONTRACT_ADDRESS,
+        { combine: { token_id_1, token_id_2, should_return_new_token: true } },
+        txFee,
+        ""
+      );
+      await checkResult(nftRes.height);
+      swal("Congratulations!", "You got a new NFT", "success", {
+        button: false,
+      });
     } catch (err) {
       console.log("err:", err);
     }

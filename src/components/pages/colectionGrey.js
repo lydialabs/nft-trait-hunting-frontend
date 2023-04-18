@@ -104,7 +104,9 @@ const Colection = function () {
               </button>
               <ul className="de_nav">
                 <li id="Mainbtn" className="active">
-                  <span onClick={handleBtnClick}>New ({nfts?.length})</span>
+                  <span onClick={handleBtnClick}>
+                    New ({nfts?.length || 0})
+                  </span>
                 </li>
                 <li id="Mainbtn1" className="">
                   <span onClick={handleBtnClick1}>Favorite (0)</span>
