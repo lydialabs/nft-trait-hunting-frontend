@@ -6,11 +6,26 @@ import { sleep } from "../../utils";
 import { Axios } from "../axios";
 
 const txFee = "auto";
+const LOOP_LIMIT = 10;
+let loopCount = 0;
 
 export const useMintNFT = (entrypoint = {}) => {
   const userInfo = useAtomValue(userAtom);
   const [nft, setNft] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const checkResult = async (blockHeight) => {
+    if (loopCount === LOOP_LIMIT) return;
+    await sleep(20000);
+    const nftData = await Axios.get("nft?height=" + blockHeight);
+    if (nftData?.data === null) {
+      loopCount++;
+      await checkResult(blockHeight);
+    } else {
+      if (nftData?.data?.length > 0) setNft(nftData?.data[0]);
+      loopCount = 0;
+    }
+  };
 
   const execute = async () => {
     setLoading(true);
@@ -23,9 +38,7 @@ export const useMintNFT = (entrypoint = {}) => {
         ""
       );
 
-      await sleep(90000);
-      const nftData = await Axios.get("nft?height=" + nftRes.height);
-      if (nftData?.data?.length > 0) setNft(nftData?.data[0]);
+      await checkResult(nftRes.height);
     } catch (err) {
       console.log("err:", err);
     }

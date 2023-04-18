@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/footer";
 import { useMintNFT } from "../../core/wallet/services";
 
@@ -144,17 +145,19 @@ const Createpage = () => {
                   <i className="fa fa-check"></i>
                 </span>
               </div> */}
-              <div className="nft__item_wrap">
+              <div className="nft__item_wrap" style={{ cursor: "initial" }}>
                 <span>
-                  {nft ? (
-                    <img
-                      src={nft.image}
-                      id="get_file_2"
-                      className="lazy nft__item_preview"
-                      alt=""
-                    />
-                  ) : loading ? (
+                  {loading ? (
                     <span aria-hidden="true" className="icon_loading"></span>
+                  ) : nft ? (
+                    <Link to="/colectionGrey">
+                      <img
+                        src={nft.image}
+                        id="get_file_2"
+                        className="lazy nft__item_preview"
+                        alt=""
+                      />
+                    </Link>
                   ) : (
                     "No preview"
                   )}

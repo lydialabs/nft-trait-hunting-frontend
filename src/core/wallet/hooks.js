@@ -14,7 +14,7 @@ export const useConnectKeplr = () => {
   const setUser = useSetAtom(userAtom);
   const navigate = useNavigate();
 
-  const connectWallet = async () => {
+  const connectWallet = async (refresh) => {
     console.log("Connecting wallet...");
     try {
       if (window) {
@@ -42,7 +42,7 @@ export const useConnectKeplr = () => {
 
             setUser({ wallet, offlineSigner, cwClient });
             localStorage.setItem(WALLET_ADDRESS, wallet);
-            navigate("/createOptions");
+            if (!refresh) navigate("/createOptions");
           } else {
             console.warn(
               "Error accessing experimental features, please update Keplr"
@@ -77,7 +77,7 @@ export const useKeepWalletConnection = () => {
   useEffect(() => {
     const accountStorage = localStorage.getItem(WALLET_ADDRESS);
     if (!accountStorage) return;
-    window.onload = connectWallet;
+    window.onload = () => connectWallet(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };
