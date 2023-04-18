@@ -2,16 +2,7 @@ import { Link } from "react-router-dom";
 import Footer from "../components/footer";
 import { StyledHeader } from "../Styles";
 
-import { useMintNFT } from "../../core/wallet/services";
-
 const Createpage = () => {
-  const mintNFT = useMintNFT({ mint: {} });
-
-  const onMintNFT = async () => {
-    const result = await mintNFT();
-    console.log("🚀 ~ file: createOptions.js:12 ~ onMintNFT ~ result:", result);
-  };
-
   return (
     <div className="greyscheme">
       <StyledHeader theme="GREY" />
@@ -38,7 +29,7 @@ const Createpage = () => {
               Choose "Single" if you want your collectible to be one of a kind
               or "Multiple" if you want to sell one collectible times
             </p>
-            <Link className="opt-create" onClick={onMintNFT}>
+            <Link to="/createGrey" className="opt-create">
               <img src="./img/misc/grey-coll-single.png" alt="" />
               <h3 style={{ marginTop: "25px" }}>Single</h3>
             </Link>
