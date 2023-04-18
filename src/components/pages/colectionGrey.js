@@ -10,6 +10,7 @@ import { StyledHeader } from "../Styles";
 const theme = "GREY"; //LIGHT, GREY, RETRO
 
 const Colection = function () {
+  const [selectedNfts, setSelectedNfts] = React.useState([]);
   const [openMenu, setOpenMenu] = React.useState(true);
   const [openMenu1, setOpenMenu1] = React.useState(false);
   const handleBtnClick = () => {
@@ -67,7 +68,22 @@ const Colection = function () {
       <section className="container no-top">
         <div className="row">
           <div className="col-lg-12">
-            <div className="items_filter">
+            <div
+              className="items_filter"
+              style={{ position: "relative", marginTop: 0 }}
+            >
+              <button
+                disabled={selectedNfts?.length < 2}
+                className="btn-main"
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                }}
+              >
+                Merge NFTs
+              </button>
               <ul className="de_nav">
                 <li id="Mainbtn" className="active">
                   <span onClick={handleBtnClick}>New ({nfts?.length})</span>
@@ -81,7 +97,13 @@ const Colection = function () {
         </div>
         {openMenu && (
           <div id="zero1" className="onStep fadeIn">
-            <ColumnNewRedux shuffle showLoadMore={false} nfts={nfts} />
+            <ColumnNewRedux
+              shuffle
+              showLoadMore={false}
+              nfts={nfts}
+              selectedNfts={selectedNfts}
+              setSelectedNfts={setSelectedNfts}
+            />
           </div>
         )}
         {openMenu1 && (

@@ -8,9 +8,10 @@ const ColumnNewRedux = ({
   shuffle = false,
   authorId = null,
   nfts = [],
+  selectedNfts,
+  setSelectedNfts,
 }) => {
   const [height, setHeight] = useState(0);
-  const [selectedNfts, setSelectedNfts] = useState([]);
 
   const onImgLoad = ({ target: img }) => {
     let currentHeight = height;
