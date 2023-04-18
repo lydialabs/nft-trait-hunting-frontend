@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 import { useSetAtom } from "jotai";
+import { GasPrice } from "@cosmjs/stargate";
+import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
+import { Tendermint34Client } from "@cosmjs/tendermint-rpc";
+
 import { userAtom } from "../../store/jotai/userAtom";
+import { ChainInfo } from "./constants";
+
 const WALLET_ADDRESS = "WALLET_ADDRESS";
 
 export const useConnectKeplr = () => {
@@ -12,17 +18,27 @@ export const useConnectKeplr = () => {
       if (window) {
         if (window["keplr"]) {
           if (window.keplr["experimentalSuggestChain"]) {
-            const chainId = "cosmoshub-4";
+            await window.keplr.enable("cosmoshub");
+            await window.keplr.experimentalSuggestChain(ChainInfo);
+            const offlineSigner = await window.getOfflineSigner(
+              ChainInfo.chainId
+            );
 
-            await window.keplr.enable(chainId);
-            // await window.keplr.experimentalSuggestChain(ChainInfo);
-            const offlineSigner = await window.getOfflineSigner(chainId);
+            const config = {
+              gasPrice: GasPrice.fromString("0.002uconst"),
+            };
+
+            const cwClient = new SigningCosmWasmClient(
+              await Tendermint34Client.connect(ChainInfo.rpc),
+              offlineSigner,
+              config
+            );
 
             const accounts = await offlineSigner.getAccounts();
             console.log("accounts:", accounts);
             const wallet = accounts[0].address;
 
-            setUser({ wallet });
+            setUser({ wallet, offlineSigner, cwClient });
             localStorage.setItem(WALLET_ADDRESS, wallet);
           } else {
             console.warn(
@@ -57,7 +73,7 @@ export const useKeepWalletConnection = () => {
   useEffect(() => {
     const accountStorage = localStorage.getItem(WALLET_ADDRESS);
     if (!accountStorage) return;
-    setTimeout(connectWallet, 500);
+    window.onload = connectWallet;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 };

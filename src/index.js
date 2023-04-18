@@ -13,12 +13,14 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
 //redux store
-// import { Provider } from "react-redux";
-// import store from "./store";
+import { Provider } from "react-redux";
+import store from "./store";
 
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </BrowserRouter>,
   document.getElementById("root")
 );

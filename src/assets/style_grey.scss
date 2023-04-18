@@ -615,6 +615,9 @@ $color_more: #fc202c;
       background: $white;
     }
   }
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 
 .greyscheme .imgslickz {
