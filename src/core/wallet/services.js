@@ -4,7 +4,7 @@ import { CONTRACT_ADDRESS } from "./constants";
 
 const txFee = "auto";
 
-export const useMintNFT = (entrypoint) => {
+export const useMintNFT = (entrypoint = {}) => {
   const userInfo = useAtomValue(userAtom);
 
   const execute = async () => {

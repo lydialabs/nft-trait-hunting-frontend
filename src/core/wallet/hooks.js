@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { useSetAtom } from "jotai";
-import { SigningStargateClient } from "@cosmjs/stargate";
+import { GasPrice } from "@cosmjs/stargate";
+import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
+import { Tendermint34Client } from "@cosmjs/tendermint-rpc";
 
 import { userAtom } from "../../store/jotai/userAtom";
 import { ChainInfo } from "./constants";
@@ -22,9 +24,14 @@ export const useConnectKeplr = () => {
               ChainInfo.chainId
             );
 
-            const cwClient = await SigningStargateClient.connectWithSigner(
-              ChainInfo.rpc,
-              offlineSigner
+            const config = {
+              gasPrice: GasPrice.fromString("0.002uconst"),
+            };
+
+            const cwClient = new SigningCosmWasmClient(
+              await Tendermint34Client.connect(ChainInfo.rpc),
+              offlineSigner,
+              config
             );
 
             const accounts = await offlineSigner.getAccounts();
