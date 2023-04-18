@@ -710,14 +710,11 @@ const Header = function ({ className }) {
                   onClick={() => btn_icon_pop(!showpop)}
                   ref={refpop}
                 >
-                  <img
-                    src="/img/author/author-11.jpg"
-                    alt=""
-                  />
+                  <img src="/img/author/author-11.jpg" alt="" />
                   {showpop && (
                     <div className="popshow">
                       <div className="d-name">
-                        <h4>Monica Lucas</h4>
+                        <h4>{useInfo?.name}</h4>
                         <span
                           className="name"
                           onClick={() => window.open("", "_self")}

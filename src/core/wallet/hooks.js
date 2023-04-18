@@ -40,7 +40,7 @@ export const useConnectKeplr = () => {
             console.log("accounts:", accounts);
             const wallet = accounts[0].address;
 
-            setUser({ wallet, offlineSigner, cwClient });
+            setUser({ wallet, name: "Alden", offlineSigner, cwClient });
             localStorage.setItem(WALLET_ADDRESS, wallet);
             if (!refresh) navigate("/createOptions");
           } else {

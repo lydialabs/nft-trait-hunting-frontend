@@ -1,8 +1,11 @@
 import React, { memo } from "react";
+import { useAtomValue } from "jotai";
+
 import ColumnNewRedux from "../components/ColumnNewRedux";
 import Footer from "../components/footer";
 
 import { useListOfNFT, useMergeNFTs } from "../../core/wallet/services";
+import { userAtom } from "../../store/jotai/userAtom";
 
 //IMPORT DYNAMIC STYLED COMPONENT
 import { StyledHeader } from "../Styles";
@@ -11,6 +14,7 @@ const theme = "GREY"; //LIGHT, GREY, RETRO
 
 const Colection = function () {
   const [selectedNfts, setSelectedNfts] = React.useState([]);
+  const userInfo = useAtomValue(userAtom);
 
   const [openMenu, setOpenMenu] = React.useState(true);
   const [openMenu1, setOpenMenu1] = React.useState(false);
@@ -62,7 +66,7 @@ const Colection = function () {
 
                 <div className="profile_name">
                   <h4>
-                    Peter
+                    {userInfo?.name}
                     <div className="clearfix"></div>
                     <span id="wallet" className="profile_wallet"></span>
                   </h4>
