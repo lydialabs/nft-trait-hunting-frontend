@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAtomValue } from "jotai";
 import { userAtom } from "../../store/jotai/userAtom";
 import { CONTRACT_ADDRESS } from "./constants";
@@ -33,4 +33,20 @@ export const useMintNFT = (entrypoint = {}) => {
   };
 
   return { mintNFT: execute, nft, loading };
+};
+
+export const useListOfNFT = () => {
+  const userInfo = useAtomValue(userAtom);
+  const [nfts, setNfts] = useState([]);
+
+  useEffect(() => {
+    if (userInfo?.wallet) {
+      Axios.get("nft?wallet=" + userInfo.wallet).then((res) => {
+        setNfts(res.data);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userInfo?.wallet]);
+
+  return nfts;
 };
