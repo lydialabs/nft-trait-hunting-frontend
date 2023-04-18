@@ -1,11 +1,6 @@
-import React, { memo, useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import * as selectors from "../../store/selectors";
-import * as actions from "../../store/actions/thunks";
-import { clearNfts, clearFilter } from "../../store/actions";
+import React, { memo, useState } from "react";
 import NftCard from "./NftCard";
 import NftMusicCard from "./NftMusicCard";
-import { shuffleArray } from "../../store/utils";
 
 //react functional component
 const ColumnNewRedux = ({
@@ -15,6 +10,7 @@ const ColumnNewRedux = ({
   nfts = [],
 }) => {
   const [height, setHeight] = useState(0);
+  const [selectedNfts, setSelectedNfts] = useState([]);
 
   const onImgLoad = ({ target: img }) => {
     let currentHeight = height;
@@ -22,6 +18,22 @@ const ColumnNewRedux = ({
       setHeight(img.offsetHeight);
     }
   };
+
+  const onSelectNFT = (nft) => {
+    if (isNFTSelected(nft?._id)) {
+      setSelectedNfts(selectedNfts.filter((item) => item._id !== nft?._id));
+      return;
+    }
+    if (selectedNfts.length === 0) {
+      setSelectedNfts([nft]);
+    } else {
+      if (selectedNfts?.[0]?.tier === nft?.tier && selectedNfts?.length < 2)
+        setSelectedNfts([...selectedNfts, nft]);
+    }
+  };
+
+  const isNFTSelected = (id) =>
+    [selectedNfts?.[0]?._id, selectedNfts?.[1]?._id].includes(id);
 
   return (
     <div className="row">
@@ -41,6 +53,10 @@ const ColumnNewRedux = ({
               key={index}
               onImgLoad={onImgLoad}
               height={height}
+              onClick={() => {
+                onSelectNFT(nft);
+              }}
+              isSelected={isNFTSelected(nft._id)}
             />
           )
         )}

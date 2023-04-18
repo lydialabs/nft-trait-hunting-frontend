@@ -21,6 +21,8 @@ const NftCard = ({
   clockTop = true,
   height,
   onImgLoad,
+  onClick,
+  isSelected,
 }) => {
   const navigate = useNavigate();
   const navigateTo = (link) => {
@@ -28,8 +30,11 @@ const NftCard = ({
   };
 
   return (
-    <div className={className}>
-      <div className="nft__item m-0">
+    <div className={className} onClick={onClick}>
+      <div
+        className="nft__item m-0"
+        style={{ border: `solid 1px ${isSelected ? "#ff343f" : "transparent"}` }}
+      >
         {/* {nft.item_type === "single_items" ? (
           <div className="icontype">
             <i className="fa fa-bookmark"></i>
