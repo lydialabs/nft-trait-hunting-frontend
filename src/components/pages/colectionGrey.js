@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import ColumnNewRedux from "../components/ColumnNewRedux";
 import Footer from "../components/footer";
 
-import { useListOfNFT } from "../../core/wallet/services";
+import { useListOfNFT, useMergeNFTs } from "../../core/wallet/services";
 
 //IMPORT DYNAMIC STYLED COMPONENT
 import { StyledHeader } from "../Styles";
@@ -11,6 +11,7 @@ const theme = "GREY"; //LIGHT, GREY, RETRO
 
 const Colection = function () {
   const [selectedNfts, setSelectedNfts] = React.useState([]);
+
   const [openMenu, setOpenMenu] = React.useState(true);
   const [openMenu1, setOpenMenu1] = React.useState(false);
   const handleBtnClick = () => {
@@ -26,7 +27,14 @@ const Colection = function () {
     document.getElementById("Mainbtn").classList.remove("active");
   };
 
-  const { nfts } = useListOfNFT();
+  const { nfts, refresh } = useListOfNFT();
+  const { mergeNFTs, loading } = useMergeNFTs();
+
+  const onMergeNFTs = async () => {
+    await mergeNFTs(selectedNfts?.[0]?.token_id, selectedNfts?.[1]?.token_id);
+    setSelectedNfts([]);
+    refresh();
+  };
 
   return (
     <div className="greyscheme">
@@ -73,7 +81,8 @@ const Colection = function () {
               style={{ position: "relative", marginTop: 0 }}
             >
               <button
-                disabled={selectedNfts?.length < 2}
+                onClick={onMergeNFTs}
+                disabled={selectedNfts?.length < 2 || loading}
                 className="btn-main"
                 style={{
                   position: "absolute",

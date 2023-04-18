@@ -9,23 +9,23 @@ const txFee = "auto";
 const LOOP_LIMIT = 10;
 let loopCount = 0;
 
-export const useMintNFT = (entrypoint = {}) => {
+const checkResult = async (blockHeight, setFunction) => {
+  if (loopCount === LOOP_LIMIT) return;
+  await sleep(20000);
+  const nftData = await Axios.get("nft?height=" + blockHeight);
+  if (nftData?.data === null) {
+    loopCount++;
+    await checkResult(blockHeight);
+  } else {
+    if (nftData?.data?.length > 0 && setFunction) setFunction(nftData?.data[0]);
+    loopCount = 0;
+  }
+};
+
+export const useMintNFT = () => {
   const userInfo = useAtomValue(userAtom);
   const [nft, setNft] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const checkResult = async (blockHeight) => {
-    if (loopCount === LOOP_LIMIT) return;
-    await sleep(20000);
-    const nftData = await Axios.get("nft?height=" + blockHeight);
-    if (nftData?.data === null) {
-      loopCount++;
-      await checkResult(blockHeight);
-    } else {
-      if (nftData?.data?.length > 0) setNft(nftData?.data[0]);
-      loopCount = 0;
-    }
-  };
 
   const execute = async () => {
     setLoading(true);
@@ -33,12 +33,12 @@ export const useMintNFT = (entrypoint = {}) => {
       const nftRes = await userInfo?.cwClient?.execute(
         userInfo.wallet,
         CONTRACT_ADDRESS,
-        entrypoint,
+        { mint: {} },
         txFee,
         ""
       );
 
-      await checkResult(nftRes.height);
+      await checkResult(nftRes.height, setNft);
     } catch (err) {
       console.log("err:", err);
     }
@@ -46,6 +46,30 @@ export const useMintNFT = (entrypoint = {}) => {
   };
 
   return { mintNFT: execute, nft, loading };
+};
+
+export const useMergeNFTs = () => {
+  const userInfo = useAtomValue(userAtom);
+  const [loading, setLoading] = useState(false);
+
+  const execute = async (token_id_1, token_id_2) => {
+    setLoading(true);
+    try {
+        const nftRes = await userInfo?.cwClient?.execute(
+          userInfo.wallet,
+          CONTRACT_ADDRESS,
+          { combine: { token_id_1, token_id_2, should_return_new_token: true } },
+          txFee,
+          ""
+        );
+        await checkResult(nftRes.height);
+    } catch (err) {
+      console.log("err:", err);
+    }
+    setLoading(false);
+  };
+
+  return { mergeNFTs: execute, loading };
 };
 
 export const useListOfNFT = () => {

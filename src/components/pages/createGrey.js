@@ -10,7 +10,7 @@ import { StyledHeader } from "../Styles";
 const theme = "GREYLOGIN"; //LIGHT, GREY, RETRO
 
 const Createpage = () => {
-  const { mintNFT, nft, loading } = useMintNFT({ mint: {} });
+  const { mintNFT, nft, loading } = useMintNFT();
 
   return (
     <div className="greyscheme">
