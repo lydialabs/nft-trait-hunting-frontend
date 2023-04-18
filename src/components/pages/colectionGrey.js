@@ -1,8 +1,11 @@
 import React, { memo } from "react";
+import { useAtomValue } from "jotai";
+
 import ColumnNewRedux from "../components/ColumnNewRedux";
 import Footer from "../components/footer";
 
-import { useListOfNFT } from "../../core/wallet/services";
+import { useListOfNFT, useMergeNFTs } from "../../core/wallet/services";
+import { userAtom } from "../../store/jotai/userAtom";
 
 //IMPORT DYNAMIC STYLED COMPONENT
 import { StyledHeader } from "../Styles";
@@ -11,6 +14,8 @@ const theme = "GREY"; //LIGHT, GREY, RETRO
 
 const Colection = function () {
   const [selectedNfts, setSelectedNfts] = React.useState([]);
+  const userInfo = useAtomValue(userAtom);
+
   const [openMenu, setOpenMenu] = React.useState(true);
   const [openMenu1, setOpenMenu1] = React.useState(false);
   const handleBtnClick = () => {
@@ -26,7 +31,14 @@ const Colection = function () {
     document.getElementById("Mainbtn").classList.remove("active");
   };
 
-  const nfts = useListOfNFT();
+  const { nfts, refresh } = useListOfNFT();
+  const { mergeNFTs, loading } = useMergeNFTs();
+
+  const onMergeNFTs = async () => {
+    await mergeNFTs(selectedNfts?.[0]?.token_id, selectedNfts?.[1]?.token_id);
+    setSelectedNfts([]);
+    refresh();
+  };
 
   return (
     <div className="greyscheme">
@@ -54,7 +66,7 @@ const Colection = function () {
 
                 <div className="profile_name">
                   <h4>
-                    Peter
+                    {userInfo?.name}
                     <div className="clearfix"></div>
                     <span id="wallet" className="profile_wallet"></span>
                   </h4>
@@ -73,16 +85,22 @@ const Colection = function () {
               style={{ position: "relative", marginTop: 0 }}
             >
               <button
-                disabled={selectedNfts?.length < 2}
+                onClick={onMergeNFTs}
+                disabled={selectedNfts?.length < 2 || loading}
                 className="btn-main"
                 style={{
                   position: "absolute",
                   right: 0,
                   top: "50%",
                   transform: "translateY(-50%)",
+                  width: "158.04px",
                 }}
               >
-                Merge NFTs
+                {loading ? (
+                  <span aria-hidden="true" className="icon_loading"></span>
+                ) : (
+                  "Merge NFTs"
+                )}
               </button>
               <ul className="de_nav">
                 <li id="Mainbtn" className="active">

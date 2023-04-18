@@ -33,7 +33,9 @@ const NftCard = ({
     <div className={className} onClick={onClick}>
       <div
         className="nft__item m-0"
-        style={{ border: `solid 1px ${isSelected ? "#ff343f" : "transparent"}` }}
+        style={{
+          border: `solid 1px ${isSelected ? "#ff343f" : "transparent"}`,
+        }}
       >
         {/* {nft.item_type === "single_items" ? (
           <div className="icontype">
@@ -81,13 +83,11 @@ const NftCard = ({
               <span className="through">{nft.priceover}</span> {nft.price} ETH
             </div>
           ) : (
-            <div className="nft__item_price mb-3 text-uppercase">
-              {nft.price} {TIERS[nft.tier]}
-              {nft.status === "on_auction" && (
-                <span>
-                  {nft.bid}/{nft.max_bid}
-                </span>
-              )}
+            <div
+              className="nft__item_price mb-3 text-uppercase"
+              style={{ color: TIERS[nft.tier].color }}
+            >
+              {TIERS[nft.tier].label}
             </div>
           )}
           {/* <div className="nft__item_action">
