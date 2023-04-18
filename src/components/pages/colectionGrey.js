@@ -26,7 +26,7 @@ const Colection = function () {
     document.getElementById("Mainbtn").classList.remove("active");
   };
 
-  const nfts = useListOfNFT();
+  const { nfts } = useListOfNFT();
 
   return (
     <div className="greyscheme">

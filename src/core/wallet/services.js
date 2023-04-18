@@ -52,14 +52,18 @@ export const useListOfNFT = () => {
   const userInfo = useAtomValue(userAtom);
   const [nfts, setNfts] = useState([]);
 
+  const doFetch = () => {
+    Axios.get("nft?wallet=" + userInfo.wallet).then((res) => {
+      setNfts(res.data);
+    });
+  };
+
   useEffect(() => {
     if (userInfo?.wallet) {
-      Axios.get("nft?wallet=" + userInfo.wallet).then((res) => {
-        setNfts(res.data);
-      });
+      doFetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo?.wallet]);
 
-  return nfts;
+  return { nfts, refresh: doFetch };
 };
