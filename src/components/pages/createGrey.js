@@ -110,12 +110,19 @@ const Createpage = () => {
                 />
               </div>
             </form> */}
-
+            <h5>Mint your NFT NOW.</h5>
+            <p className="p-info pb-3">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book.
+            </p>
             <button className="btn-main" onClick={mintNFT} disabled={loading}>
               Create NFT
             </button>
+
             {loading && (
-              <p className="p-info pb-3">
+              <p className="p-info pt-3">
                 Processing! This may take a while to finish.
               </p>
             )}
