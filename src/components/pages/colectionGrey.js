@@ -145,6 +145,7 @@ const Colection = function () {
               nfts={nfts}
               selectedNfts={selectedNfts}
               setSelectedNfts={setSelectedNfts}
+              loading={loading}
             />
           </div>
         )}

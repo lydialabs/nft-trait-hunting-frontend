@@ -10,6 +10,7 @@ const ColumnNewRedux = ({
   nfts = [],
   selectedNfts,
   setSelectedNfts,
+  loading,
 }) => {
   const [height, setHeight] = useState(0);
 
@@ -39,7 +40,7 @@ const ColumnNewRedux = ({
     selectedNfts.findIndex((item) => item._id === id) + 1;
 
   return (
-    <div className="row">
+    <div className="row" style={{ pointerEvents: loading ? "none" : "auto" }}>
       {nfts &&
         nfts.map((nft, index) =>
           nft.category === "music" ? (
