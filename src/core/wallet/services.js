@@ -48,8 +48,10 @@ export const useContractFunction = () => {
         await checkResultByBlockHeight(nftRes.height, setNft);
       }
     } catch (err) {
-      console.log("err:", err);
+      setLoading(false);
+      throw err;
     }
+
     setLoading(false);
   };
 

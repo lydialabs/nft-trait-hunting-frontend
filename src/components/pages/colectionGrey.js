@@ -38,30 +38,34 @@ const Colection = function () {
   const { execute: mergeNFTs, loading } = useContractFunction();
 
   const onMergeNFTs = async () => {
-    const shouldReturenNewToken = randomBoolean(
-      TIERS[selectedNfts?.[0]?.tier].percentage
-    );
-    await mergeNFTs(
-      {
-        combine: {
-          token_id_1: selectedNfts?.[0]?.token_id,
-          token_id_2: selectedNfts?.[1]?.token_id,
-          should_return_new_token: shouldReturenNewToken,
+    try {
+      const shouldReturenNewToken = randomBoolean(
+        TIERS[selectedNfts?.[0]?.tier].percentage
+      );
+      await mergeNFTs(
+        {
+          combine: {
+            token_id_1: selectedNfts?.[0]?.token_id,
+            token_id_2: selectedNfts?.[1]?.token_id,
+            should_return_new_token: shouldReturenNewToken,
+          },
         },
-      },
-      nfts
-    );
+        nfts
+      );
 
-    const alert = shouldReturenNewToken
-      ? ["Congratulations!", "You got a new NFT", "success"]
-      : ["Opps!", "Merging failed", "error"];
+      const alert = shouldReturenNewToken
+        ? ["Congratulations!", "You got a new NFT", "success"]
+        : ["Opps!", "Merging failed", "error"];
 
-    swal(...alert, {
-      button: false,
-      timer: 3000,
-    });
-    setSelectedNfts([]);
-    refresh();
+      swal(...alert, {
+        button: false,
+        timer: 3000,
+      });
+      setSelectedNfts([]);
+      refresh();
+    } catch (err) {
+      console.error("err:", err);
+    }
   };
 
   return (
