@@ -9,7 +9,7 @@ import { Axios } from "../axios";
 const txFee = "auto";
 
 const checkResult = async (blockHeight, setFunction) => {
-  await sleep(20000);
+  await sleep(5000);
   const nftData = await Axios.get("nft?height=" + blockHeight);
   if (nftData?.data === null) {
     await checkResult(blockHeight, setFunction);
