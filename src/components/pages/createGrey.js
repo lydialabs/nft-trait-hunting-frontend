@@ -11,7 +11,6 @@ const theme = "GREYLOGIN"; //LIGHT, GREY, RETRO
 
 const Createpage = () => {
   const { mintNFT, nft, loading } = useMintNFT();
-  console.log("🚀 ~ file: createGrey.js:14 ~ Createpage ~ nft:", nft)
 
   return (
     <div className="greyscheme">

@@ -35,28 +35,34 @@ const NftCard = ({
         className="nft__item m-0"
         style={{
           border: `solid 1px ${isSelected ? "#ff343f" : "transparent"}`,
+          position: "relative",
         }}
       >
-        {/* {nft.item_type === "single_items" ? (
-          <div className="icontype">
-            <i className="fa fa-bookmark"></i>
+        {isSelected !== 0 && (
+          <div
+            className="index-mark"
+            style={{
+              width: "25px",
+              height: "25px",
+              lineHeight: "25px",
+              backgroundColor: "#ff343f",
+              textAlign: "center",
+              color: "white",
+              fontWeight: "bold",
+              position: "absolute",
+              top: 0,
+              right: 0,
+              borderTopRightRadius: "10px",
+            }}
+          >
+            {isSelected}
           </div>
-        ) : (
-          <div className="icontype">
-            <i className="fa fa-shopping-basket"></i>
-          </div>
-        )} */}
+        )}
         {nft.deadline && clockTop && (
           <div className="de_countdown">
             <Clock deadline={nft.deadline} />
           </div>
         )}
-        {/* <div className="author_list_pp">
-                    <span onClick={()=> navigateTo(nft.author_link)}>                                    
-                        <img className="lazy" src={nft.image} alt=""/>
-                        <i className="fa fa-check"></i>
-                    </span>
-                </div> */}
         <div className="nft__item_wrap" style={{ height: `${height}px` }}>
           <Outer>
             <span>
@@ -90,15 +96,6 @@ const NftCard = ({
               {TIERS[nft.tier].label}
             </div>
           )}
-          {/* <div className="nft__item_action">
-            <span onClick={() => navigateTo(`${nft.bid_link}/${nft.id}`)}>
-              {nft.status === "on_auction" ? "Place a bid" : "Buy Now"}
-            </span>
-          </div>
-          <div className="nft__item_like">
-            <i className="fa fa-heart"></i>
-            <span>{nft.likes}</span>
-          </div> */}
         </div>
       </div>
     </div>

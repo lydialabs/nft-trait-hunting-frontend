@@ -34,7 +34,7 @@ const ColumnNewRedux = ({
   };
 
   const isNFTSelected = (id) =>
-    [selectedNfts?.[0]?._id, selectedNfts?.[1]?._id].includes(id);
+    selectedNfts.findIndex((item) => item._id === id) + 1;
 
   return (
     <div className="row">
