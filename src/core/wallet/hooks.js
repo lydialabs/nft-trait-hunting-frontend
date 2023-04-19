@@ -14,7 +14,7 @@ export const useConnectKeplr = () => {
   const setUser = useSetAtom(userAtom);
   const navigate = useNavigate();
 
-  const connectWallet = async (refresh) => {
+  const connectWallet = async (refresh = false) => {
     console.log("Connecting wallet...");
     try {
       if (window) {

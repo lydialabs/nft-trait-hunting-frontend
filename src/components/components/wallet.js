@@ -9,7 +9,7 @@ const Wallet = () => {
     <div className="row">
       <div
         className="col-lg-3 mb30"
-        onClick={connectWallet}
+        onClick={() => connectWallet()}
         style={{ cursor: "pointer" }}
       >
         <span className="box-url">
