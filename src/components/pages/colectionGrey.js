@@ -7,6 +7,8 @@ import Footer from "../components/footer";
 
 import { useListOfNFT, useContractFunction } from "../../core/wallet/services";
 import { userAtom } from "../../store/jotai/userAtom";
+import { randomBoolean } from "../../utils";
+import { TIERS } from "../../core/wallet/constants";
 
 //IMPORT DYNAMIC STYLED COMPONENT
 import { StyledHeader } from "../Styles";
@@ -36,14 +38,20 @@ const Colection = function () {
   const { execute: mergeNFTs, loading } = useContractFunction();
 
   const onMergeNFTs = async () => {
+    const shouldReturenNewToken = randomBoolean(TIERS[selectedNfts?.[0]?.tier]);
     await mergeNFTs({
       combine: {
         token_id_1: selectedNfts?.[0]?.token_id,
         token_id_2: selectedNfts?.[1]?.token_id,
-        should_return_new_token: true,
+        should_return_new_token: shouldReturenNewToken,
       },
     });
-    swal("Congratulations!", "You got a new NFT", "success", {
+
+    const alert = shouldReturenNewToken
+      ? ["Congratulations!", "You got a new NFT", "success"]
+      : ["Opps!", "Merging failed", "error"];
+
+    swal(...alert, {
       button: false,
       timer: 3000,
     });

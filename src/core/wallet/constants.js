@@ -32,7 +32,7 @@ export const CONTRACT_ADDRESS =
   "archway1c0gnfqf4hjz0juwkxt26y9uxvmkqpg84sgl76r2evvd9gy95yrzq88x69v";
 
 export const TIERS = {
-  1: { label: "common", color: "#727272" },
-  2: { label: "rare", color: "#c295e3" },
+  1: { label: "common", color: "#727272", percentage: 0.5 },
+  2: { label: "rare", color: "#c295e3", percentage: 0.3 },
   3: { label: "legendary", color: "#ffc100" },
 };

@@ -7,19 +7,14 @@ import { sleep } from "../../utils";
 import { Axios } from "../axios";
 
 const txFee = "auto";
-const LOOP_LIMIT = 10;
-let loopCount = 0;
 
 const checkResult = async (blockHeight, setFunction) => {
-  if (loopCount === LOOP_LIMIT) return;
   await sleep(20000);
   const nftData = await Axios.get("nft?height=" + blockHeight);
   if (nftData?.data === null) {
-    loopCount++;
     await checkResult(blockHeight, setFunction);
   } else {
     if (nftData?.data?.length > 0 && setFunction) setFunction(nftData?.data[0]);
-    loopCount = 0;
   }
 };
 
