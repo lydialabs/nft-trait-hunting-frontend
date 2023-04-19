@@ -42,28 +42,18 @@ const ColumnNewRedux = ({
   return (
     <div className="row" style={{ pointerEvents: loading ? "none" : "auto" }}>
       {nfts &&
-        nfts.map((nft, index) =>
-          nft.category === "music" ? (
-            <NftMusicCard
-              nft={nft}
-              audioUrl={nft.audio_url}
-              key={index}
-              onImgLoad={onImgLoad}
-              height={height}
-            />
-          ) : (
-            <NftCard
-              nft={nft}
-              key={index}
-              onImgLoad={onImgLoad}
-              height={height}
-              onClick={() => {
-                onSelectNFT(nft);
-              }}
-              isSelected={isNFTSelected(nft._id)}
-            />
-          )
-        )}
+        nfts.map((nft, index) => (
+          <NftCard
+            nft={nft}
+            key={index}
+            onImgLoad={onImgLoad}
+            height={height}
+            onClick={() => {
+              onSelectNFT(nft);
+            }}
+            isSelected={isNFTSelected(nft._id)}
+          />
+        ))}
       {showLoadMore && nfts.length <= 20 && (
         <div className="col-lg-12">
           <div className="spacer-single"></div>
