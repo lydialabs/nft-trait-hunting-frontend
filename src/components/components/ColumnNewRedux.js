@@ -21,6 +21,8 @@ const ColumnNewRedux = ({
   };
 
   const onSelectNFT = (nft) => {
+    // cannot merge legendary token
+    if (nft?.tier === 3) return;
     if (isNFTSelected(nft?._id)) {
       setSelectedNfts(selectedNfts.filter((item) => item._id !== nft?._id));
       return;
