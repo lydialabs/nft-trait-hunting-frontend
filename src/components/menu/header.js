@@ -11,6 +11,7 @@ import useOnclickOutside from "react-cool-onclickoutside";
 import auth from "../../core/auth";
 
 import { useConnectKeplr } from "../../core/wallet/hooks";
+import BigNumber from "bignumber.js";
 
 setDefaultBreakpoints([{ xs: 0 }, { l: 1199 }, { xl: 1200 }]);
 
@@ -83,6 +84,11 @@ const Header = function ({ className }) {
   const refpopnot = useOnclickOutside(() => {
     closeNot();
   });
+
+  const formatBalance = (value, decimals) => {
+    const TEN = new BigNumber(10);
+    return new BigNumber(value).div(TEN.pow(decimals)).dp(6).toFormat();
+  };
 
   const handleLogout = () => {
     auth.clearAppStorage();
@@ -724,7 +730,7 @@ const Header = function ({ className }) {
                       </div>
                       <div className="d-balance">
                         <h4>Balance</h4>
-                        12.858 ETH
+                        {formatBalance(useInfo?.balance, 6)} ARCH
                       </div>
                       <div className="d-wallet">
                         <h4>My Wallet</h4>
