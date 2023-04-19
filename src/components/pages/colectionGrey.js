@@ -38,7 +38,9 @@ const Colection = function () {
   const { execute: mergeNFTs, loading } = useContractFunction();
 
   const onMergeNFTs = async () => {
-    const shouldReturenNewToken = randomBoolean(TIERS[selectedNfts?.[0]?.tier]);
+    const shouldReturenNewToken = randomBoolean(
+      TIERS[selectedNfts?.[0]?.tier].percentage
+    );
     await mergeNFTs(
       {
         combine: {
