@@ -8,13 +8,21 @@ import { Axios } from "../axios";
 
 const txFee = "auto";
 
-const checkResult = async (blockHeight, setFunction) => {
+const checkResultByBlockHeight = async (blockHeight, setFunction) => {
   await sleep(5000);
   const nftData = await Axios.get("nft?height=" + blockHeight);
   if (nftData?.data === null) {
-    await checkResult(blockHeight, setFunction);
+    await checkResultByBlockHeight(blockHeight, setFunction);
   } else {
     if (nftData?.data?.length > 0 && setFunction) setFunction(nftData?.data[0]);
+  }
+};
+
+const checkResultByCustom = async (initArray = [], wallet) => {
+  await sleep(5000);
+  const data = await Axios.get("nft?wallet=" + wallet);
+  if (initArray.length === data?.data?.length) {
+    await checkResultByCustom(initArray, wallet);
   }
 };
 
@@ -23,7 +31,7 @@ export const useContractFunction = () => {
   const [nft, setNft] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const execute = async (params = {}) => {
+  const execute = async (params = {}, initArray) => {
     setLoading(true);
     try {
       const nftRes = await userInfo?.cwClient?.execute(
@@ -34,7 +42,11 @@ export const useContractFunction = () => {
         ""
       );
 
-      await checkResult(nftRes.height, setNft);
+      if (initArray) {
+        await checkResultByCustom(initArray, userInfo.wallet);
+      } else {
+        await checkResultByBlockHeight(nftRes.height, setNft);
+      }
     } catch (err) {
       console.log("err:", err);
     }

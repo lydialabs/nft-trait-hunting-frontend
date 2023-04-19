@@ -39,13 +39,16 @@ const Colection = function () {
 
   const onMergeNFTs = async () => {
     const shouldReturenNewToken = randomBoolean(TIERS[selectedNfts?.[0]?.tier]);
-    await mergeNFTs({
-      combine: {
-        token_id_1: selectedNfts?.[0]?.token_id,
-        token_id_2: selectedNfts?.[1]?.token_id,
-        should_return_new_token: shouldReturenNewToken,
+    await mergeNFTs(
+      {
+        combine: {
+          token_id_1: selectedNfts?.[0]?.token_id,
+          token_id_2: selectedNfts?.[1]?.token_id,
+          should_return_new_token: shouldReturenNewToken,
+        },
       },
-    });
+      nfts
+    );
 
     const alert = shouldReturenNewToken
       ? ["Congratulations!", "You got a new NFT", "success"]
