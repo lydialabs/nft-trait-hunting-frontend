@@ -1,10 +1,11 @@
 import React, { memo } from "react";
 import { useAtomValue } from "jotai";
+import swal from "@sweetalert/with-react";
 
 import ColumnNewRedux from "../components/ColumnNewRedux";
 import Footer from "../components/footer";
 
-import { useListOfNFT, useMergeNFTs } from "../../core/wallet/services";
+import { useListOfNFT, useContractFunction } from "../../core/wallet/services";
 import { userAtom } from "../../store/jotai/userAtom";
 
 //IMPORT DYNAMIC STYLED COMPONENT
@@ -32,10 +33,20 @@ const Colection = function () {
   };
 
   const { nfts, refresh } = useListOfNFT();
-  const { mergeNFTs, loading } = useMergeNFTs();
+  const { execute: mergeNFTs, loading } = useContractFunction();
 
   const onMergeNFTs = async () => {
-    await mergeNFTs(selectedNfts?.[0]?.token_id, selectedNfts?.[1]?.token_id);
+    await mergeNFTs({
+      combine: {
+        token_id_1: selectedNfts?.[0]?.token_id,
+        token_id_2: selectedNfts?.[1]?.token_id,
+        should_return_new_token: true,
+      },
+    });
+    swal("Congratulations!", "You got a new NFT", "success", {
+      button: false,
+      timer: 3000,
+    });
     setSelectedNfts([]);
     refresh();
   };

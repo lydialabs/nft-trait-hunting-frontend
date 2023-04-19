@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useAtomValue } from "jotai";
-import swal from "@sweetalert/with-react";
 
 import { userAtom } from "../../store/jotai/userAtom";
 import { CONTRACT_ADDRESS } from "./constants";
@@ -24,18 +23,18 @@ const checkResult = async (blockHeight, setFunction) => {
   }
 };
 
-export const useMintNFT = () => {
+export const useContractFunction = () => {
   const userInfo = useAtomValue(userAtom);
   const [nft, setNft] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const execute = async () => {
+  const execute = async (params = {}) => {
     setLoading(true);
     try {
       const nftRes = await userInfo?.cwClient?.execute(
         userInfo.wallet,
         CONTRACT_ADDRESS,
-        { mint: {} },
+        params,
         txFee,
         ""
       );
@@ -47,34 +46,7 @@ export const useMintNFT = () => {
     setLoading(false);
   };
 
-  return { mintNFT: execute, nft, loading };
-};
-
-export const useMergeNFTs = () => {
-  const userInfo = useAtomValue(userAtom);
-  const [loading, setLoading] = useState(false);
-
-  const execute = async (token_id_1, token_id_2) => {
-    setLoading(true);
-    try {
-      const nftRes = await userInfo?.cwClient?.execute(
-        userInfo.wallet,
-        CONTRACT_ADDRESS,
-        { combine: { token_id_1, token_id_2, should_return_new_token: true } },
-        txFee,
-        ""
-      );
-      await checkResult(nftRes.height);
-      swal("Congratulations!", "You got a new NFT", "success", {
-        button: false,
-      });
-    } catch (err) {
-      console.log("err:", err);
-    }
-    setLoading(false);
-  };
-
-  return { mergeNFTs: execute, loading };
+  return { execute, nft, loading };
 };
 
 export const useListOfNFT = () => {

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/footer";
-import { useMintNFT } from "../../core/wallet/services";
+import { useContractFunction } from "../../core/wallet/services";
 
 // import { createGlobalStyle } from 'styled-components';
 
@@ -10,7 +10,7 @@ import { StyledHeader } from "../Styles";
 const theme = "GREYLOGIN"; //LIGHT, GREY, RETRO
 
 const Createpage = () => {
-  const { mintNFT, nft, loading } = useMintNFT();
+  const { execute: mintNFT, nft, loading } = useContractFunction();
 
   return (
     <div className="greyscheme">
@@ -118,7 +118,11 @@ const Createpage = () => {
               ever since the 1500s, when an unknown printer took a galley of
               type and scrambled it to make a type specimen book.
             </p>
-            <button className="btn-main" onClick={mintNFT} disabled={loading}>
+            <button
+              className="btn-main"
+              onClick={() => mintNFT({ mint: {} })}
+              disabled={loading}
+            >
               Create NFT
             </button>
 
