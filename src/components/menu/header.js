@@ -23,7 +23,7 @@ const NavLink = (props) => {
   return <Link {...props} className={match ? "active" : "non-active"} />;
 };
 
-const navlinks = ["Home", "Explore", "Activity", "Elements"];
+const navlinks = ["Home", "Explore", "Activity"];
 
 const Header = function ({ className }) {
   const navigate = useNavigate();
