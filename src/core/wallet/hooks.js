@@ -40,13 +40,7 @@ export const useConnectKeplr = () => {
             console.log("accounts:", accounts);
             const wallet = accounts[0].address;
 
-            const CosmWasmClient =
-              await SigningCosmWasmClient.connectWithSigner(
-                ChainInfo.rpc,
-                offlineSigner
-              );
-
-            const balance = await CosmWasmClient.getBalance(
+            const balance = await cwClient.getBalance(
               wallet,
               ChainInfo.currencies[0].coinMinimalDenom
             );
