@@ -1,6 +1,5 @@
 import React, { memo, useState } from "react";
 import NftCard from "./NftCard";
-import NftMusicCard from "./NftMusicCard";
 
 //react functional component
 const ColumnNewRedux = ({

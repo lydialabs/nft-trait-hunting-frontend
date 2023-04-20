@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useAtomValue } from "jotai";
+
 import Footer from "../components/footer";
+
 import { useContractFunction } from "../../core/wallet/services";
+import { userAtom } from "../../store/jotai/userAtom";
 
 // import { createGlobalStyle } from 'styled-components';
 
@@ -11,6 +15,7 @@ const theme = "GREYLOGIN"; //LIGHT, GREY, RETRO
 
 const Createpage = () => {
   const { execute: mintNFT, nft, loading } = useContractFunction();
+  const useInfo = useAtomValue(userAtom);
 
   return (
     <div className="greyscheme">
@@ -30,87 +35,6 @@ const Createpage = () => {
       <section className="container">
         <div className="row">
           <div className="col-lg-7 offset-lg-1 mb-5 center">
-            {/* <form id="form-create-item" className="form-border" action="#">
-              <div className="field-set">
-                <h5>Upload file</h5>
-
-                <div className="d-create-file">
-                  <p id="file_name">PNG, JPG, GIF, WEBP or MP4. Max 200mb.</p>
-                  {this.state.files.map((x) => (
-                    <p key="{index}">
-                      PNG, JPG, GIF, WEBP or MP4. Max 200mb.{x.name}
-                    </p>
-                  ))}
-                  <div className="browse">
-                    <input
-                      type="button"
-                      id="get_file"
-                      className="btn-main"
-                      value="Browse"
-                    />
-                    <input
-                      id="upload_file"
-                      type="file"
-                      multiple
-                      onChange={this.onChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="spacer-single"></div>
-
-                <h5>Title</h5>
-                <input
-                  type="text"
-                  name="item_title"
-                  id="item_title"
-                  className="form-control"
-                  placeholder="e.g. 'Crypto Funk"
-                />
-
-                <div className="spacer-10"></div>
-
-                <h5>Description</h5>
-                <textarea
-                  data-autoresize
-                  name="item_desc"
-                  id="item_desc"
-                  className="form-control"
-                  placeholder="e.g. 'This is very limited item'"
-                ></textarea>
-
-                <div className="spacer-10"></div>
-
-                <h5>Price</h5>
-                <input
-                  type="text"
-                  name="item_price"
-                  id="item_price"
-                  className="form-control"
-                  placeholder="enter price for one item (ETH)"
-                />
-
-                <div className="spacer-10"></div>
-
-                <h5>Royalties</h5>
-                <input
-                  type="text"
-                  name="item_royalties"
-                  id="item_royalties"
-                  className="form-control"
-                  placeholder="suggested: 0, 10%, 20%, 30%. Maximum is 70%"
-                />
-
-                <div className="spacer-10"></div>
-
-                <input
-                  type="button"
-                  id="submit"
-                  className="btn-main"
-                  value="Create Item"
-                />
-              </div>
-            </form> */}
             <h5>Mint your NFT NOW.</h5>
             <p className="p-info pb-3">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -121,9 +45,9 @@ const Createpage = () => {
             <button
               className="btn-main"
               onClick={() => mintNFT({ mint: {} })}
-              disabled={loading}
+              disabled={loading || !useInfo?.wallet}
             >
-              Create NFT
+              {useInfo?.wallet ? "Create NFT" : "Connect Wallet"}
             </button>
 
             {loading && (
@@ -136,19 +60,6 @@ const Createpage = () => {
           <div className="col-lg-3 col-sm-6 col-xs-12">
             <h5>Preview item</h5>
             <div className="nft__item m-0">
-              {/* <div className="de_countdown">
-                <Clock deadline="December, 30, 2021" />
-              </div> */}
-              {/* <div className="author_list_pp">
-                <span>
-                  <img
-                    className="lazy"
-                    src="./img/author/author-1.jpg"
-                    alt=""
-                  />
-                  <i className="fa fa-check"></i>
-                </span>
-              </div> */}
               <div className="nft__item_wrap" style={{ cursor: "initial" }}>
                 <span>
                   {loading ? (
@@ -167,21 +78,6 @@ const Createpage = () => {
                   )}
                 </span>
               </div>
-              {/* <div className="nft__item_info">
-                <span>
-                  <h4>Pinky Ocean</h4>
-                </span>
-                <div className="nft__item_price">
-                  0.08 ETH<span>1/20</span>
-                </div>
-                <div className="nft__item_action">
-                  <span>Place a bid</span>
-                </div>
-                <div className="nft__item_like">
-                  <i className="fa fa-heart"></i>
-                  <span>50</span>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
