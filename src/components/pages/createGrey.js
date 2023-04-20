@@ -25,7 +25,7 @@ const Createpage = () => {
           <div className="container">
             <div className="row m-10-hor">
               <div className="col-12">
-                <h1 className="text-center">Create</h1>
+                <h1 className="text-center">Mint a Sword</h1>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@ const Createpage = () => {
       <section className="container">
         <div className="row">
           <div className="col-lg-7 offset-lg-1 mb-5 center">
-            <h5>Mint your NFT NOW.</h5>
+            <h5>Mint your SWORD NOW.</h5>
             <p className="p-info pb-3">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry. Lorem Ipsum has been the industry's standard dummy text
@@ -47,7 +47,7 @@ const Createpage = () => {
               onClick={() => mintNFT({ mint: {} })}
               disabled={loading || !useInfo?.wallet}
             >
-              {useInfo?.wallet ? "Create NFT" : "Connect Wallet"}
+              {useInfo?.wallet ? "Mint a Sword" : "Connect Wallet"}
             </button>
 
             {loading && (

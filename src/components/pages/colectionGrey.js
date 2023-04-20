@@ -121,13 +121,13 @@ const Colection = function () {
                   right: 0,
                   top: "50%",
                   transform: "translateY(-50%)",
-                  width: "158.04px",
+                  width: "178.04px",
                 }}
               >
                 {loading ? (
                   <span aria-hidden="true" className="icon_loading"></span>
                 ) : (
-                  "Merge NFTs"
+                  "Merge Swords"
                 )}
               </button>
               <ul className="de_nav">

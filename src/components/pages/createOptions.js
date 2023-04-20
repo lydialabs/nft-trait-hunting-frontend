@@ -15,7 +15,7 @@ const Createpage = () => {
           <div className="container">
             <div className="row m-10-hor">
               <div className="col-12">
-                <h1 className="text-center">NFT Craft</h1>
+                <h1 className="text-center">NFT Trait Hunting</h1>
               </div>
             </div>
           </div>
@@ -26,8 +26,8 @@ const Createpage = () => {
         <div className="row">
           <div className="col-md-6 offset-md-3">
             <p>
-              Choose "Mint" if you want to mint an NFT
-              or "Combine" if you want to combine your NFTs.
+              Choose "Mint" if you want to mint a Sword
+              or "Merge" if you want to merge your Swords.
             </p>
             <Link to="/createGrey" className="opt-create">
               <img src="./img/misc/grey-coll-single.png" alt="" />
@@ -35,7 +35,7 @@ const Createpage = () => {
             </Link>
             <Link to="/colectionGrey" className="opt-create">
               <img src="./img/misc/grey-coll-multiple.png" alt="" />
-              <h3>Combine</h3>
+              <h3>Merge</h3>
             </Link>
           </div>
         </div>
