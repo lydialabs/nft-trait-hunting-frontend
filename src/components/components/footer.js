@@ -83,7 +83,7 @@ const footer = () => (
                     style={{ width: "40px", borderRadius: "50%" }}
                   />
                   <span className="copy">
-                    &copy; Copyright 2023 - NFT Trait Hunting by Lydia Labs
+                    &copy; Copyright 2023 - Ascension Area by Lydia Labs
                   </span>
                 </span>
               </div>
