@@ -15,7 +15,7 @@ const Createpage = () => {
           <div className="container">
             <div className="row m-10-hor">
               <div className="col-12">
-                <h1 className="text-center">NFT Trait Hunting</h1>
+                <h1 className="text-center">Ascension Area</h1>
               </div>
             </div>
           </div>
