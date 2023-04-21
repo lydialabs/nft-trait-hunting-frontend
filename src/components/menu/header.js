@@ -150,7 +150,7 @@ const Header = function ({ className }) {
           </div>
 
           <BreakpointProvider>
-            <Breakpoint l down>
+            {/* <Breakpoint l down>
               {showmenu && (
                 <div className="menu">
                   {navlinks.map((link) => (
@@ -167,7 +167,7 @@ const Header = function ({ className }) {
                   ))}
                 </div>
               )}
-            </Breakpoint>
+            </Breakpoint> */}
 
             <Breakpoint xl>
               <div className="menu">
