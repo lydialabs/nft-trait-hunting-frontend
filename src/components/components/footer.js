@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 const footer = () => (
   <footer className="footer-light">
@@ -88,7 +88,12 @@ const footer = () => (
                     <i className="fa fa-facebook fa-lg"></i>
                   </span> */}
 
-                  <a className="btn-website" href="https://lydialabs.xyz/">
+                  <a
+                    className="btn-website"
+                    href="https://lydialabs.xyz/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <span onClick={() => window.open("", "_self")}>
                       <i className="fa fa-globe fa-lg"></i>
                     </span>
@@ -97,6 +102,8 @@ const footer = () => (
                   <a
                     className="btn-twitter"
                     href="https://twitter.com/lydia_labs"
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     <span onClick={() => window.open("", "_self")}>
                       <i className="fa fa-twitter fa-lg"></i>
