@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import swal from "@sweetalert/with-react";
+
 import { useSetAtom } from "jotai";
 import { GasPrice } from "@cosmjs/stargate";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
@@ -14,6 +16,12 @@ export const useConnectKeplr = () => {
   const setUser = useSetAtom(userAtom);
   const navigate = useNavigate();
 
+  const disconnectWallet = () => {
+    setUser({});
+    localStorage.removeItem(WALLET_ADDRESS);
+    navigate("/walletGrey");
+  };
+
   const connectWallet = async (refresh = false) => {
     console.log("Connecting wallet...");
     try {
@@ -22,6 +30,23 @@ export const useConnectKeplr = () => {
           if (window.keplr["experimentalSuggestChain"]) {
             await window.keplr.enable("cosmoshub");
             await window.keplr.experimentalSuggestChain(ChainInfo);
+            const chains = await window.keplr.getChainInfosWithoutEndpoints();
+
+            if (chains.find((chain) => chain.chainId === "constantine-1")) {
+              swal({
+                title: "Notification",
+                content: (
+                  <p>
+                    We found that you added the <strong>Constantine Testnet 1</strong>{" "}
+                    before, please remove it first to continue using the app.
+                  </p>
+                ),
+                icon: "warning",
+              });
+              disconnectWallet();
+              return;
+            }
+
             const offlineSigner = await window.getOfflineSigner(
               ChainInfo.chainId
             );
@@ -72,12 +97,6 @@ export const useConnectKeplr = () => {
     } catch (e) {
       console.error("Error connecting to wallet", e);
     }
-  };
-
-  const disconnectWallet = () => {
-    setUser({});
-    localStorage.removeItem(WALLET_ADDRESS);
-    navigate("/walletGrey");
   };
 
   return { connectWallet, disconnectWallet };
