@@ -23,7 +23,9 @@ const NavLink = (props) => {
   return <Link {...props} className={match ? "active" : "non-active"} />;
 };
 
-const navlinks = ["Home", "Explore", "Activity"];
+// const navlinks = ["Home", "Explore", "Activity"];
+const navlinks = [''];
+
 
 const Header = function ({ className }) {
   const navigate = useNavigate();
@@ -184,7 +186,7 @@ const Header = function ({ className }) {
                         onMouseLeave={closeMenu}
                       >
                         {link}
-                        <span className="lines"></span>
+                        {/* <span className="lines"></span> */}
                       </div>
                     </div>
                   </div>
