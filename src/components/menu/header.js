@@ -134,7 +134,12 @@ const Header = function ({ className }) {
                   alt="#"
                 />
                 <img src="/img/logo-2.png" className="img-fluid d-3" alt="#" />
-                <img src="/img/logo-3.png" className="img-fluid d-4" alt="#" />
+                <img
+                  src="/logo192.png"
+                  className="img-fluid d-4"
+                  alt="#"
+                  style={{ width: "40px", borderRadius: "50%" }}
+                />
                 <img
                   src="/img/logo-light.png"
                   className="img-fluid d-none"

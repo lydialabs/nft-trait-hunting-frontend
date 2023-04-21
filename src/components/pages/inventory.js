@@ -35,7 +35,8 @@ const Colection = function () {
         id="profile_banner"
         className="jumbotron breadcumb no-bg"
         style={{
-          backgroundImage: `url(/img/background/5.jpg)`,
+          background:
+            "#eae8e6 center / 40% no-repeat url(/img/background/banner.png)",
         }}
       >
         <div className="mainbreadcumb"></div>

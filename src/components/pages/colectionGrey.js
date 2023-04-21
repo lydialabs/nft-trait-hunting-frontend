@@ -1,12 +1,10 @@
 import { memo, useState } from "react";
-import { useAtomValue } from "jotai";
 import swal from "@sweetalert/with-react";
 
 import ColumnNewRedux from "../components/ColumnNewRedux";
 import Footer from "../components/footer";
 
 import { useListOfNFT, useContractFunction } from "../../core/wallet/services";
-import { userAtom } from "../../store/jotai/userAtom";
 import { randomBoolean } from "../../utils";
 import { TIERS } from "../../core/wallet/constants";
 
@@ -17,7 +15,6 @@ const theme = "GREY"; //LIGHT, GREY, RETRO
 
 const Colection = function () {
   const [selectedNfts, setSelectedNfts] = useState([]);
-  const userInfo = useAtomValue(userAtom);
 
   const { nfts, refresh } = useListOfNFT();
   const { execute: mergeNFTs, loading } = useContractFunction();
