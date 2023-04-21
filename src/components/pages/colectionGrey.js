@@ -56,56 +56,15 @@ const Colection = function () {
   return (
     <div className="greyscheme">
       <StyledHeader theme={theme} />
-
-      <section
-        id="profile_banner"
-        className="jumbotron breadcumb no-bg"
-        style={{
-          backgroundImage: `url(/img/background/5.jpg)`,
-        }}
-      >
-        <div className="mainbreadcumb"></div>
-      </section>
-
-      <section className="container d_coll no-top no-bottom">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="d_profile">
-              <div className="profile_avatar">
-                <div className="d_profile_img">
-                  <img src="/img/author/author-11.jpg" alt="" />
-                  <i className="fa fa-check"></i>
-                </div>
-
-                <div className="profile_name">
-                  <h4>
-                    {userInfo?.name}
-                    <div className="clearfix"></div>
-                    <span id="wallet" className="profile_wallet"></span>
-                  </h4>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="container no-top">
+      <section className="container" style={{ paddingTop: "200px" }}>
         <div className="row">
           <div className="col-lg-12">
-            <div
-              className="items_filter mb-5"
-              style={{ position: "relative", marginTop: 0 }}
-            >
+            <div className="items_filter mb-5" style={{ marginTop: 0 }}>
               <button
                 onClick={onMergeNFTs}
                 disabled={selectedNfts?.length < 2 || loading}
                 className="btn-main"
                 style={{
-                  position: "absolute",
-                  right: 0,
-                  top: "50%",
-                  transform: "translateY(-50%)",
                   width: "178.04px",
                 }}
               >
