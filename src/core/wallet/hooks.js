@@ -38,7 +38,7 @@ export const useConnectKeplr = () => {
                 content: (
                   <p>
                     We found that you added the <strong>Constantine Testnet 1</strong>{" "}
-                    before, please remove it first to continue using the app.
+                    before, please remove it in your wallet first to continue using the app.
                   </p>
                 ),
                 icon: "warning",
