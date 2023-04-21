@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { useAtomValue } from "jotai";
 import swal from "@sweetalert/with-react";
 
@@ -14,10 +14,18 @@ import { StyledHeader } from "../Styles";
 const theme = "GREY"; //LIGHT, GREY, RETRO
 
 const Colection = function () {
-  const [selectedNfts, setSelectedNfts] = useState([]);
   const userInfo = useAtomValue(userAtom);
 
   const { nfts } = useListOfNFT();
+
+  const onClick = (sword) => {
+    swal({
+      title: "Preview",
+      content: (
+        <img src={sword?.image} alt="preview" style={{ width: "100%" }} />
+      ),
+    });
+  };
 
   return (
     <div className="greyscheme">
@@ -57,13 +65,7 @@ const Colection = function () {
       </section>
 
       <section className="container no-top">
-        <ColumnNewRedux
-          shuffle
-          showLoadMore={false}
-          nfts={nfts}
-          selectedNfts={selectedNfts}
-          setSelectedNfts={setSelectedNfts}
-        />
+        <ColumnNewRedux showLoadMore={false} nfts={nfts} onClick={onClick} />
       </section>
 
       <Footer />
