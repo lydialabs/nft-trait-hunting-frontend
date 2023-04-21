@@ -29,48 +29,47 @@ const Colection = function () {
 
   return (
     <div className="greyscheme">
-      <StyledHeader theme={theme} />
+      <div style={{ minHeight: "calc(100vh - 118px)" }}>
+        <StyledHeader theme={theme} />
 
-      <section
-        id="profile_banner"
-        className="jumbotron breadcumb no-bg"
-        style={{
-          background:
-            "#eae8e6 center / 40% no-repeat url(/img/background/banner.png)",
-        }}
-      >
-        <div className="mainbreadcumb"></div>
-      </section>
+        <section
+          id="profile_banner"
+          className="jumbotron breadcumb no-bg"
+          style={{
+            background:
+              "#eae8e6 center / 40% no-repeat url(/img/background/banner.png)",
+          }}
+        >
+          <div className="mainbreadcumb"></div>
+        </section>
 
-      <section
-        className="container d_coll no-top no-bottom"
-        style={{ minHeight: "calc(100vh - 118px - 454px)" }}
-      >
-        <div className="row">
-          <div className="col-md-12">
-            <div className="d_profile">
-              <div className="profile_avatar">
-                <div className="d_profile_img">
-                  <img src="/img/author/profile-image.png" alt="" />
-                  <i className="fa fa-check"></i>
-                </div>
+        <section className="container d_coll no-top no-bottom">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="d_profile">
+                <div className="profile_avatar">
+                  <div className="d_profile_img">
+                    <img src="/img/author/profile-image.png" alt="" />
+                    <i className="fa fa-check"></i>
+                  </div>
 
-                <div className="profile_name">
-                  <h4>
-                    {userInfo?.name}
-                    <div className="clearfix"></div>
-                    <span id="wallet" className="profile_wallet"></span>
-                  </h4>
+                  <div className="profile_name">
+                    <h4>
+                      {userInfo?.name}
+                      <div className="clearfix"></div>
+                      <span id="wallet" className="profile_wallet"></span>
+                    </h4>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="container no-top">
-        <ColumnNewRedux showLoadMore={false} nfts={nfts} onClick={onClick} />
-      </section>
+        <section className="container no-top">
+          <ColumnNewRedux showLoadMore={false} nfts={nfts} onClick={onClick} />
+        </section>
+      </div>
 
       <Footer />
     </div>
