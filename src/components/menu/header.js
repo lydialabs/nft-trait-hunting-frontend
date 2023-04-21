@@ -194,7 +194,9 @@ const Header = function ({ className }) {
           <div className="mainside">
             {!useInfo?.wallet ? (
               <div className="connect-wal">
-                <NavLink to="/walletGrey">Connect Wallet</NavLink>
+                <NavLink to="/walletGrey" id="btn">
+                  Connect Wallet
+                </NavLink>
               </div>
             ) : (
               <div className="logout">
