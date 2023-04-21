@@ -1169,47 +1169,47 @@ $color_more: #fc202c;
 
 /*** footer ***/
 .greyscheme footer {
-  padding: 80px 0 0 0;
-  background: rgba(255, 255, 255, 0.025) !important;
+  // padding: 80px 0 0 0;
+  background: transparent !important;
   &.footer-light {
-    border-top: solid 1px rgba(255, 255, 255, 0.025);
+    border-top: solid 1px transparent;
     color: #a2a2a2;
-    a {
-      color: #a2a2a2;
-      font-weight: 400;
-      text-decoration: none !important;
-      &:hover {
-        color: $color;
-      }
-    }
-    #form_subscribe {
-      input[type="text"] {
-        width: 80%;
-        float: left;
-        border-radius: 30px 0 0 30px;
-        color: #ffffff;
-        background: rgba(255, 255, 255, 0.1);
-        border: solid 1px #333333;
-        border-right-color: rgb(51, 51, 51);
-        border-right-style: solid;
-        border-right-width: 1px;
-        border-right: none;
-        padding: 6px 12px;
-        margin-bottom: 0;
-        box-shadow: 2px 2px 20px 0px rgba(20, 20, 20, 0.05);
-      }
-      #btn-subscribe i {
-        text-align: center;
-        font-size: 28px;
-        float: left;
-        width: 20%;
-        background: $color;
-        color: #ffffff;
-        display: table-cell;
-        padding: 5px 0 5px 0;
-        border-radius: 0 30px 30px 0;
-      }
-    }
+    // a {
+    //   color: #a2a2a2;
+    //   font-weight: 400;
+    //   text-decoration: none !important;
+    //   &:hover {
+    //     color: $color;
+    //   }
+    // }
+    // #form_subscribe {
+    //   input[type="text"] {
+    //     width: 80%;
+    //     float: left;
+    //     border-radius: 30px 0 0 30px;
+    //     color: #ffffff;
+    //     background: rgba(255, 255, 255, 0.1);
+    //     border: solid 1px #333333;
+    //     border-right-color: rgb(51, 51, 51);
+    //     border-right-style: solid;
+    //     border-right-width: 1px;
+    //     border-right: none;
+    //     padding: 6px 12px;
+    //     margin-bottom: 0;
+    //     box-shadow: 2px 2px 20px 0px rgba(20, 20, 20, 0.05);
+    //   }
+    //   #btn-subscribe i {
+    //     text-align: center;
+    //     font-size: 28px;
+    //     float: left;
+    //     width: 20%;
+    //     background: $color;
+    //     color: #ffffff;
+    //     display: table-cell;
+    //     padding: 5px 0 5px 0;
+    //     border-radius: 0 30px 30px 0;
+    //   }
+    // }
     .subfooter {
       margin-top: 40px;
       padding: 20px 0 20px 0;
