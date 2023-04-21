@@ -147,4 +147,4 @@ export function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export const randomBoolean = (percentage = 1) => Math.random() < percentage;
+export const randomBoolean = (percentage = 1) => Math.random() <= percentage;

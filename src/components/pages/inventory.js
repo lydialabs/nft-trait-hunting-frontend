@@ -5,10 +5,8 @@ import swal from "@sweetalert/with-react";
 import ColumnNewRedux from "../components/ColumnNewRedux";
 import Footer from "../components/footer";
 
-import { useListOfNFT, useContractFunction } from "../../core/wallet/services";
+import { useListOfNFT } from "../../core/wallet/services";
 import { userAtom } from "../../store/jotai/userAtom";
-import { randomBoolean } from "../../utils";
-import { TIERS } from "../../core/wallet/constants";
 
 //IMPORT DYNAMIC STYLED COMPONENT
 import { StyledHeader } from "../Styles";
@@ -19,39 +17,7 @@ const Colection = function () {
   const [selectedNfts, setSelectedNfts] = useState([]);
   const userInfo = useAtomValue(userAtom);
 
-  const { nfts, refresh } = useListOfNFT();
-  const { execute: mergeNFTs, loading } = useContractFunction();
-
-  const onMergeNFTs = async () => {
-    try {
-      const shouldReturenNewToken = randomBoolean(
-        TIERS[selectedNfts?.[0]?.tier].percentage
-      );
-      await mergeNFTs(
-        {
-          combine: {
-            token_id_1: selectedNfts?.[0]?.token_id,
-            token_id_2: selectedNfts?.[1]?.token_id,
-            should_return_new_token: shouldReturenNewToken,
-          },
-        },
-        nfts
-      );
-
-      const alert = shouldReturenNewToken
-        ? ["Congratulations!", "You got a new NFT", "success"]
-        : ["Opps!", "Merging failed", "error"];
-
-      swal(...alert, {
-        button: false,
-        timer: 3000,
-      });
-      setSelectedNfts([]);
-      refresh();
-    } catch (err) {
-      console.error("err:", err);
-    }
-  };
+  const { nfts } = useListOfNFT();
 
   return (
     <div className="greyscheme">
@@ -91,40 +57,12 @@ const Colection = function () {
       </section>
 
       <section className="container no-top">
-        <div className="row">
-          <div className="col-lg-12">
-            <div
-              className="items_filter mb-5"
-              style={{ position: "relative", marginTop: 0 }}
-            >
-              <button
-                onClick={onMergeNFTs}
-                disabled={selectedNfts?.length < 2 || loading}
-                className="btn-main"
-                style={{
-                  position: "absolute",
-                  right: 0,
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  width: "178.04px",
-                }}
-              >
-                {loading ? (
-                  <span aria-hidden="true" className="icon_loading"></span>
-                ) : (
-                  "Merge Swords"
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
         <ColumnNewRedux
           shuffle
           showLoadMore={false}
           nfts={nfts}
           selectedNfts={selectedNfts}
           setSelectedNfts={setSelectedNfts}
-          loading={loading}
         />
       </section>
 
