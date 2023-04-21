@@ -48,7 +48,7 @@ const Colection = function () {
             <div className="d_profile">
               <div className="profile_avatar">
                 <div className="d_profile_img">
-                  <img src="/img/author/author-11.jpg" alt="" />
+                  <img src="/img/author/profile-image.png" alt="" />
                   <i className="fa fa-check"></i>
                 </div>
 

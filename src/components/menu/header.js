@@ -207,7 +207,7 @@ const Header = function ({ className }) {
                   onClick={() => btn_icon_pop(!showpop)}
                   ref={refpop}
                 >
-                  <img src="/img/author/author-11.jpg" alt="" />
+                  <img src="/img/author/profile-image.png" alt="" />
                   {showpop && (
                     <div className="popshow">
                       <div className="d-name">
