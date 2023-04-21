@@ -31,6 +31,7 @@
     "react-awesome-reveal": "^3.8.1",
     "react-bootstrap": "^1.6.3",
     "react-cool-onclickoutside": "^1.6.2",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^16.8.0",
     "react-photo-gallery": "^8.0.0",
     "react-pose": "^4.0.10",

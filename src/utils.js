@@ -148,3 +148,17 @@ export function sleep(ms) {
 }
 
 export const randomBoolean = (percentage = 1) => Math.random() <= percentage;
+
+export function formatAddress(wallet, length = 10) {
+  if (wallet) {
+    if (wallet.length > length * 2) {
+      return (
+        wallet.slice(0, length) +
+        "..." +
+        wallet.slice(wallet.length - length + 3)
+      );
+    } else {
+      return wallet;
+    }
+  } else return null;
+}

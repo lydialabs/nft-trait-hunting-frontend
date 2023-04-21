@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useAtomValue } from "jotai";
-import { userAtom } from "../../store/jotai/userAtom";
+import BigNumber from "bignumber.js";
 
 import Breakpoint, {
   BreakpointProvider,
@@ -9,10 +10,11 @@ import Breakpoint, {
 } from "react-socks";
 import { Link, useNavigate, useMatch, useResolvedPath } from "react-router-dom";
 import useOnclickOutside from "react-cool-onclickoutside";
-import auth from "../../core/auth";
 
+import auth from "../../core/auth";
+import { userAtom } from "../../store/jotai/userAtom";
 import { useConnectKeplr } from "../../core/wallet/hooks";
-import BigNumber from "bignumber.js";
+import { formatAddress } from "../../utils";
 
 setDefaultBreakpoints([{ xs: 0 }, { l: 1199 }, { xl: 1200 }]);
 
@@ -215,14 +217,20 @@ const Header = function ({ className }) {
                         <h4>Balance</h4>
                         {formatBalance(useInfo?.balance, 6)} ARCH
                       </div>
-                      <div className="d-wallet">
+                      <div className="d-walet">
                         <h4>My Wallet</h4>
-                        <span id="wallet" className="d-wallet-address">
-                          {useInfo?.wallet}
+                        <span
+                          id="wallet"
+                          className="d-wallet-address"
+                          style={{ marginRight: "10px" }}
+                        >
+                          {formatAddress(useInfo?.wallet)}
                         </span>
-                        <button id="btn_copy" title="Copy Text">
-                          Copy
-                        </button>
+                        <CopyToClipboard text={useInfo?.wallet}>
+                          <button id="btn_copy" title="Copy Text">
+                            Copy
+                          </button>
+                        </CopyToClipboard>
                       </div>
                       <div className="d-line"></div>
                       <ul className="de-submenu-profile">
