@@ -24,8 +24,7 @@ const NavLink = (props) => {
 };
 
 // const navlinks = ["Home", "Explore", "Activity"];
-const navlinks = [''];
-
+const navlinks = [""];
 
 const Header = function ({ className }) {
   const navigate = useNavigate();
@@ -202,7 +201,9 @@ const Header = function ({ className }) {
               </div>
             ) : (
               <div className="logout">
-                <NavLink to="/createOptions">Create</NavLink>
+                <NavLink to="/createOptions" id="btn">
+                  Create
+                </NavLink>
                 <div
                   id="de-click-menu-profile"
                   className="de-menu-profile"
@@ -213,13 +214,7 @@ const Header = function ({ className }) {
                   {showpop && (
                     <div className="popshow">
                       <div className="d-name">
-                        <h4>{useInfo?.name}</h4>
-                        <span
-                          className="name"
-                          onClick={() => window.open("", "_self")}
-                        >
-                          Set display name
-                        </span>
+                        <h4 style={{ color: "#8364e2" }}>{useInfo?.name}</h4>
                       </div>
                       <div className="d-balance">
                         <h4>Balance</h4>
@@ -237,18 +232,16 @@ const Header = function ({ className }) {
                       <div className="d-line"></div>
                       <ul className="de-submenu-profile">
                         <li>
-                          <span>
-                            <i className="fa fa-user"></i> My profile
-                          </span>
+                          <Link to="inventory" style={{ margin: 0 }}>
+                            <span>
+                              <i className="fa fa-user"></i> My Inventory
+                            </span>
+                          </Link>
                         </li>
-                        <li>
-                          <span>
-                            <i className="fa fa-pencil"></i> Edit profile
-                          </span>
-                        </li>
+
                         <li onClick={handleLogout}>
                           <span>
-                            <i className="fa fa-sign-out"></i> Disconnect wallet
+                            <i className="fa fa-sign-out"></i> Disconnect Wallet
                           </span>
                         </li>
                       </ul>

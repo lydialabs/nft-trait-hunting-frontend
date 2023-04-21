@@ -72,7 +72,7 @@ export const useConnectKeplr = () => {
 
             setUser({
               wallet,
-              name: "Alden",
+              name: "Archway User",
               offlineSigner,
               cwClient,
               balance: balance?.amount,

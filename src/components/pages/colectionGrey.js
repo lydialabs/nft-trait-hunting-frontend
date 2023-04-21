@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo, useState } from "react";
 import { useAtomValue } from "jotai";
 import swal from "@sweetalert/with-react";
 
@@ -16,23 +16,8 @@ import { StyledHeader } from "../Styles";
 const theme = "GREY"; //LIGHT, GREY, RETRO
 
 const Colection = function () {
-  const [selectedNfts, setSelectedNfts] = React.useState([]);
+  const [selectedNfts, setSelectedNfts] = useState([]);
   const userInfo = useAtomValue(userAtom);
-
-  const [openMenu, setOpenMenu] = React.useState(true);
-  const [openMenu1, setOpenMenu1] = React.useState(false);
-  const handleBtnClick = () => {
-    setOpenMenu(!openMenu);
-    setOpenMenu1(false);
-    document.getElementById("Mainbtn").classList.add("active");
-    document.getElementById("Mainbtn1").classList.remove("active");
-  };
-  const handleBtnClick1 = () => {
-    setOpenMenu1(!openMenu1);
-    setOpenMenu(false);
-    document.getElementById("Mainbtn1").classList.add("active");
-    document.getElementById("Mainbtn").classList.remove("active");
-  };
 
   const { nfts, refresh } = useListOfNFT();
   const { execute: mergeNFTs, loading } = useContractFunction();
@@ -109,7 +94,7 @@ const Colection = function () {
         <div className="row">
           <div className="col-lg-12">
             <div
-              className="items_filter"
+              className="items_filter mb-5"
               style={{ position: "relative", marginTop: 0 }}
             >
               <button
@@ -130,36 +115,17 @@ const Colection = function () {
                   "Merge Swords"
                 )}
               </button>
-              <ul className="de_nav">
-                <li id="Mainbtn" className="active">
-                  <span onClick={handleBtnClick}>
-                    New ({nfts?.length || 0})
-                  </span>
-                </li>
-                <li id="Mainbtn1" className="">
-                  <span onClick={handleBtnClick1}>Favorite (0)</span>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
-        {openMenu && (
-          <div id="zero1" className="onStep fadeIn">
-            <ColumnNewRedux
-              shuffle
-              showLoadMore={false}
-              nfts={nfts}
-              selectedNfts={selectedNfts}
-              setSelectedNfts={setSelectedNfts}
-              loading={loading}
-            />
-          </div>
-        )}
-        {openMenu1 && (
-          <div id="zero2" className="onStep fadeIn">
-            <ColumnNewRedux shuffle showLoadMore={false} />
-          </div>
-        )}
+        <ColumnNewRedux
+          shuffle
+          showLoadMore={false}
+          nfts={nfts}
+          selectedNfts={selectedNfts}
+          setSelectedNfts={setSelectedNfts}
+          loading={loading}
+        />
       </section>
 
       <Footer />
