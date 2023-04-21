@@ -26,8 +26,8 @@ const Createpage = () => {
         <div className="row">
           <div className="col-md-6 offset-md-3">
             <p>
-              Choose "Mint" if you want to mint a Sword
-              or "Merge" if you want to merge your Swords.
+              Choose "Mint" if you want to mint a sword
+              or "Merge" if you want to merge your swords.
             </p>
             <Link to="/createGrey" className="opt-create">
               <img src="./img/misc/grey-coll-single.png" alt="" />
