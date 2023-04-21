@@ -44,13 +44,13 @@ export const StyledHeader = createGlobalStyle`
         .navbar .navbar-item .lines {
             border-bottom: 2px solid #ff343f;
         }
-        .navbar .mainside a{
+        .navbar .mainside a#btn{
             text-align: center;
             color: #fff !important;
             background: #ff343f;
             border-radius: 30px;
         }
-        .navbar .mainside a:hover {
+        .navbar .mainside a#btn:hover {
             box-shadow: 2px 2px 20px 0 #ff343f;
             transition: all .3s ease;
         }
@@ -136,13 +136,13 @@ export const StyledHeader = createGlobalStyle`
         .navbar .navbar-item .lines {
         border-bottom: 2px solid #ff343f;
         }
-        .navbar .mainside a{
+        .navbar .mainside a#btn{
         text-align: center;
         color: #fff !important;
         background: #ff343f;
         border-radius: 30px;
         }
-        .navbar .mainside a:hover {
+        .navbar .mainside a#btn:hover {
         box-shadow: 2px 2px 20px 0 #ff343f;
         transition: all .3s ease;
         }

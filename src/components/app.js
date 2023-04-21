@@ -26,6 +26,8 @@ import Header from "./menu/header";
 // import Helpcentergrey from "./pages/helpcenterGrey";
 // import Colection from "./pages/colection";
 import Colectiongrey from "./pages/colectionGrey";
+import Inventory from "./pages/inventory";
+
 // import ItemDetail from './pages/ItemDetail';
 // import ItemDetailRedux from "./pages/ItemDetailRedux";
 // import ItemDetailReduxgrey from "./pages/ItemDetailReduxGrey";
@@ -101,6 +103,8 @@ const App = () => {
         <Route element={<Createoption />} path="/createOptions" />
         <Route element={<WalletGrey />} path="/walletGrey" />
         <Route element={<Colectiongrey />} path="/colectionGrey" />
+        <Route element={<Inventory />} path="/inventory" />
+
 
         {/* <Route path="/Author">
           <Route

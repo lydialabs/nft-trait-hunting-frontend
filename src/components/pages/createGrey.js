@@ -35,12 +35,12 @@ const Createpage = () => {
       <section className="container">
         <div className="row">
           <div className="col-lg-7 offset-lg-1 mb-5 center">
-            <h5>Mint your SWORD NOW.</h5>
+            <h5>Free Swords</h5>
             <p className="p-info pb-3">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              You can mint unlimited number of free swords, however, you will
+              only be able to mint swords of the "common" tier. If you want to
+              upgrade your swords to rare or legendary, use the "Merge" feature
+              from the homepage.
             </p>
             <button
               className="btn-main"

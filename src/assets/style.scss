@@ -4793,7 +4793,7 @@ blockquote {
   width: max-content;
   padding-left: 0;
   padding-right: 0;
-  a {
+  a#btn {
     text-align: center;
     color: #fff !important;
     background: #8364e2;
@@ -5378,4 +5378,8 @@ blockquote {
 @media only screen and (max-width: 420px) {
 }
 @media only screen and (max-width: 378px) {
+}
+
+.swal-button {
+  background-color: #212428 !important;
 }

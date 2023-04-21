@@ -4,12 +4,11 @@ import NftCard from "./NftCard";
 //react functional component
 const ColumnNewRedux = ({
   showLoadMore = true,
-  shuffle = false,
-  authorId = null,
   nfts = [],
-  selectedNfts,
+  selectedNfts = [],
   setSelectedNfts,
   loading,
+  onClick,
 }) => {
   const [height, setHeight] = useState(0);
 
@@ -48,7 +47,11 @@ const ColumnNewRedux = ({
             onImgLoad={onImgLoad}
             height={height}
             onClick={() => {
-              onSelectNFT(nft);
+              if (onClick) {
+                onClick(nft);
+              } else {
+                onSelectNFT(nft);
+              }
             }}
             isSelected={isNFTSelected(nft._id)}
           />
