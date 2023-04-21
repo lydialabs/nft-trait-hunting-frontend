@@ -64,7 +64,7 @@ const Colection = function () {
               <p className="p-info pb-3" style={{ fontSize: "16px" }}>
                 Using generative AI, two swords are merged to create the next
                 tier sword, which inherits traits of existing two swords. The
-                success rate is 50% for mergin common swords and 30% for rare
+                success rate is 50% for merging common swords and 30% for rare
                 swords.
               </p>
               <button
