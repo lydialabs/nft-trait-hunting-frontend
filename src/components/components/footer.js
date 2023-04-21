@@ -76,7 +76,12 @@ const footer = () => (
                     className="f-logo d-3"
                     src="./img/logo-2-light.png"
                   />
-                  <img alt="" className="f-logo d-4" src="./img/logo-3.png" />
+                  <img
+                    alt=""
+                    className="f-logo d-4"
+                    src="/logo192.png"
+                    style={{ width: "40px", borderRadius: "50%" }}
+                  />
                   <span className="copy">
                     &copy; Copyright 2023 - NFT Trait Hunting by Lydia Labs
                   </span>

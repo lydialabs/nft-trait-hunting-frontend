@@ -53,7 +53,10 @@ const Colection = function () {
   return (
     <div className="greyscheme">
       <StyledHeader theme={theme} />
-      <section className="container" style={{ paddingTop: "150px" }}>
+      <section
+        className="container"
+        style={{ paddingTop: "150px", minHeight: "calc(100vh - 118px)" }}
+      >
         <div className="row">
           <div className="col-lg-7">
             <div className="items_filter mb-5" style={{ marginTop: 0 }}>

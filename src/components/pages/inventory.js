@@ -42,7 +42,10 @@ const Colection = function () {
         <div className="mainbreadcumb"></div>
       </section>
 
-      <section className="container d_coll no-top no-bottom">
+      <section
+        className="container d_coll no-top no-bottom"
+        style={{ minHeight: "calc(100vh - 118px - 454px)" }}
+      >
         <div className="row">
           <div className="col-md-12">
             <div className="d_profile">
