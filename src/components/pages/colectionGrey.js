@@ -60,7 +60,7 @@ const Colection = function () {
         ? { title: "Congratulations!", content: <Icon>success</Icon> }
         : { title: "Oops!", content: <Icon fail>fail</Icon> };
 
-      swal({ ...alert, timer: 5000 });
+      swal({ ...alert, timer: 10000 });
       setSelectedNfts([]);
       refresh();
     } catch (err) {
