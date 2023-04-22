@@ -1,4 +1,5 @@
 import { memo, useState } from "react";
+import styled from "styled-components";
 import swal from "@sweetalert/with-react";
 
 import ColumnNewRedux from "../components/ColumnNewRedux";
@@ -12,6 +13,26 @@ import { TIERS } from "../../core/wallet/constants";
 import { StyledHeader } from "../Styles";
 //SWITCH VARIABLE FOR PAGE STYLE
 const theme = "GREY"; //LIGHT, GREY, RETRO
+
+const Icon = styled("div")`
+  color: ${(props) => (props.fail ? "#c32530" : "#0b8443")};
+  font-size: 60px;
+  line-height: 15px;
+  font-weight: 900;
+  border-radius: 10px;
+  border: ${(props) =>
+    props.fail ? "8px solid #c32530" : "8px solid #0b8443"};
+  display: inline-block;
+  padding: 20px 5px;
+  margin: 20px 0;
+  text-transform: uppercase;
+  font-family: "Courier";
+  -webkit-mask-image: url("/img/background/grunge.png");
+  -webkit-mask-size: 944px 604px;
+  mix-blend-mode: multiply;
+  opacity: 0.8;
+  transform: rotate(-10deg);
+`;
 
 const Colection = function () {
   const [selectedNfts, setSelectedNfts] = useState([]);
@@ -36,13 +57,10 @@ const Colection = function () {
       );
 
       const alert = shouldReturenNewToken
-        ? ["Congratulations!", "You got a new NFT", "success"]
-        : ["Opps!", "Merging failed", "error"];
+        ? { title: "Congratulations!", content: <Icon>success</Icon> }
+        : { title: "Oops!", content: <Icon fail>fail</Icon> };
 
-      swal(...alert, {
-        button: false,
-        timer: 3000,
-      });
+      swal({ ...alert, timer: 5000 });
       setSelectedNfts([]);
       refresh();
     } catch (err) {
@@ -73,6 +91,7 @@ const Colection = function () {
                 className="btn-main"
                 style={{
                   width: "178.04px",
+                  height: "37px",
                 }}
               >
                 {loading ? (
