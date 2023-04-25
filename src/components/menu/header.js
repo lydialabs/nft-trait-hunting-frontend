@@ -11,7 +11,6 @@ import Breakpoint, {
 import { Link, useNavigate, useMatch, useResolvedPath } from "react-router-dom";
 import useOnclickOutside from "react-cool-onclickoutside";
 
-import auth from "../../core/auth";
 import { userAtom } from "../../store/jotai/userAtom";
 import { useConnectKeplr } from "../../core/wallet/hooks";
 import { formatAddress } from "../../utils";
@@ -97,7 +96,6 @@ const Header = function ({ className }) {
   };
 
   const handleLogout = () => {
-    auth.clearAppStorage();
     disconnectWallet();
     navigate("/");
   };
