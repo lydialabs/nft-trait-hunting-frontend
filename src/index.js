@@ -12,15 +12,9 @@ import App from "./components/app";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 
-//redux store
-import { Provider } from "react-redux";
-import store from "./store";
-
 ReactDOM.render(
   <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <App />
   </BrowserRouter>,
   document.getElementById("root")
 );

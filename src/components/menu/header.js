@@ -11,7 +11,6 @@ import Breakpoint, {
 import { Link, useNavigate, useMatch, useResolvedPath } from "react-router-dom";
 import useOnclickOutside from "react-cool-onclickoutside";
 
-import auth from "../../core/auth";
 import { userAtom } from "../../store/jotai/userAtom";
 import { useConnectKeplr } from "../../core/wallet/hooks";
 import { formatAddress } from "../../utils";
@@ -97,7 +96,6 @@ const Header = function ({ className }) {
   };
 
   const handleLogout = () => {
-    auth.clearAppStorage();
     disconnectWallet();
     navigate("/");
   };
@@ -140,7 +138,7 @@ const Header = function ({ className }) {
                   src="/logo192.png"
                   className="img-fluid d-4"
                   alt="#"
-                  style={{ width: "40px", borderRadius: "50%" }}
+                  style={{ width: "50px", borderRadius: "50%" }}
                 />
                 <img
                   src="/img/logo-light.png"
